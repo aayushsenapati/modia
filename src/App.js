@@ -16,18 +16,15 @@ function App() {
   const[width,setWidth]=useState()
   const[height,setHeight]=useState()
   let styleAppDiv = {
-    width:"75%",
-    height:"75%",
+    width:"100%",
+    height:"100%",
     transition:"all 1s ease",
-    margin:"auto",
-    marginTop:"100px",
-    border:"solid 5px black",
-    borderRadius:"10px"
+    
   }
-  if (y< (-(height/width)*x+height) && y>(height/width)*x) styleAppDiv.backgroundColor="rgb(100,149,237)"//blue
-  if (y<(height/width)*x && y< (-(height/width)*x+height)) styleAppDiv.backgroundColor="rgb(80,200,120)"//green 
-  if (y>(-(height/width)*x+height) && y<(height/width)*x) styleAppDiv.backgroundColor="rgb(255,195,0)"//yellow
-  if (y> (-(height/width)*x+height) && y>(height/width)*x) styleAppDiv.backgroundColor="rgb(227,11,92)"//red
+  if (y< (-(height/width)*x+height) && y>(height/width)*x) {styleAppDiv.backgroundColor="rgb(100,149,237)";;styleAppDiv.color="rgb(237,189,100)"}//blue
+  if (y<(height/width)*x && y< (-(height/width)*x+height)) {styleAppDiv.backgroundColor="rgb(80,200,120)";styleAppDiv.color="rgb(200,80,160)"}//green
+  if (y>(-(height/width)*x+height) && y<(height/width)*x) {styleAppDiv.backgroundColor="rgb(255,195,0)";styleAppDiv.color="rgb(0,59,255)"}//yellow
+  if (y> (-(height/width)*x+height) && y>(height/width)*x) {styleAppDiv.backgroundColor="rgb(227,11,92)";styleAppDiv.color="rgb(11,227,148)"}//red
 
 
   useLayoutEffect(() => {
