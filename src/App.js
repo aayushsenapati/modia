@@ -17,12 +17,14 @@ function App() {
   const[height,setHeight]=useState()
   let styleAppDiv = {
     width:"100%",
-    height:"100%"
+    height:"100%",
+    transition:"all 1s ease"
   }
-  if (y< (-(height/width)*x+height) && y>(height/width)*x) styleAppDiv.backgroundColor="rgb(0,0,255)"
-  if (y<(height/width)*x && y< (-(height/width)*x+height)) styleAppDiv.backgroundColor="rgb(0,255,0)"
-  if (y>(-(height/width)*x+height) && y<(height/width)*x) styleAppDiv.backgroundColor="rgb(255,255,0)"
-  if (y> (-(height/width)*x+height) && y>(height/width)*x) styleAppDiv.backgroundColor="rgb(255,0,0)"
+  if (y< (-(height/width)*x+height) && y>(height/width)*x) styleAppDiv.backgroundColor="rgb(100,149,237)"//blue
+  if (y<(height/width)*x && y< (-(height/width)*x+height)) styleAppDiv.backgroundColor="rgb(80,200,120)"//green
+  if (y>(-(height/width)*x+height) && y<(height/width)*x) styleAppDiv.backgroundColor="rgb(255,195,0)"//yellow
+  if (y> (-(height/width)*x+height) && y>(height/width)*x) styleAppDiv.backgroundColor="rgb(227,11,92)"//red
+
 
   useLayoutEffect(() => {
     setWidth(ref.current.offsetWidth);
