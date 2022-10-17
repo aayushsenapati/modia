@@ -16,9 +16,13 @@ function App() {
   const[width,setWidth]=useState()
   const[height,setHeight]=useState()
   let styleAppDiv = {
-    width:"100%",
-    height:"100%",
-    transition:"all 1s ease"
+    width:"75%",
+    height:"75%",
+    transition:"all 1s ease",
+    margin:"auto",
+    marginTop:"100px",
+    border:"solid 5px black",
+    borderRadius:"10px"
   }
   if (y< (-(height/width)*x+height) && y>(height/width)*x) styleAppDiv.backgroundColor="rgb(100,149,237)"//blue
   if (y<(height/width)*x && y< (-(height/width)*x+height)) styleAppDiv.backgroundColor="rgb(80,200,120)"//green
