@@ -16,10 +16,13 @@ function App() {
   const[width,setWidth]=useState()
   const[height,setHeight]=useState()
   let styleAppDiv = {
-    backgroundColor: `rgb(${x},${y},${x-y}`,
     width:"100%",
     height:"100%"
   }
+  if (y< (-(height/width)*x+height) && y>(height/width)*x) styleAppDiv.backgroundColor="rgb(0,0,255)"
+  if (y<(height/width)*x && y< (-(height/width)*x+height)) styleAppDiv.backgroundColor="rgb(0,255,0)"
+  if (y>(-(height/width)*x+height) && y<(height/width)*x) styleAppDiv.backgroundColor="rgb(255,255,0)"
+  if (y> (-(height/width)*x+height) && y>(height/width)*x) styleAppDiv.backgroundColor="rgb(255,0,0)"
 
   useLayoutEffect(() => {
     setWidth(ref.current.offsetWidth);
