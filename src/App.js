@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import {useEffect,useState,useRef,useLayoutEffect} from "react"
+import {useEffect,useState,useRef,useLayoutEffect} from "react";
+import axios from "axios"
 
 
 
@@ -15,6 +16,12 @@ function App() {
   const ref = useRef(null);
   const[width,setWidth]=useState()
   const[height,setHeight]=useState()
+  const [searchKey, setSearchKey] = useState("")
+  const [artists, setArtists] = useState([])
+
+
+
+
   let styleAppDiv = {
     width:"100%",
     height:"100%",
@@ -67,11 +74,44 @@ function App() {
     window.localStorage.removeItem("token")
   }
 
+  const searchArtists = async (e) => {
+    e.preventDefault()
+    const {data} = await axios.get("https://api.spotify.com/v1/search", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        params: {
+            q: searchKey,
+            type: "artist"
+        }
+    })
+
+    setArtists(data.artists.items)
+}
+
+
+const renderArtists = () => {
+  return artists.map(artist => (
+      <div key={artist.id}>
+          {artist.images.length ? <img width={"200px"} height={"200px"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
+          {artist.name}
+      </div>
+  ))
+}
+
+
+
   return (
     <div class="App" style={styleAppDiv} ref={ref}>
       <h1 id="p1" style={{margin:'0px'}}>Modia</h1>
       {!token?<a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>:<button onClick={logout}>Logout</button>}
       <h1>{`x: ${x}; y: ${y};`}{width};{height}</h1>
+      
+      <form onSubmit={searchArtists}>
+        <input type="text" onChange={e => setSearchKey(e.target.value)}/>
+        <button type={"submit"}>Search</button>
+      </form>
+      {renderArtists()}
 
     </div>
   );
