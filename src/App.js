@@ -88,9 +88,27 @@ function App() {
 
     setArtists(data.artists.items)
 }
+  const getTopSongs = async () => {
+    const {data} = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        
+    })
+
+    setArtists(data.tracks.items)
+}
 
 
 const renderArtists = () => {
+  return artists.map(artist => (
+      <div key={artist.id}>
+          {artist.images.length ? <img width={"200px"} height={"200px"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
+          {artist.name}
+      </div>
+  ))
+}
+const renderSongs = () => {
   return artists.map(artist => (
       <div key={artist.id}>
           {artist.images.length ? <img width={"200px"} height={"200px"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
@@ -111,6 +129,7 @@ const renderArtists = () => {
         <input type="text" onChange={e => setSearchKey(e.target.value)}/>
         <button type={"submit"}>Search</button>
       </form>
+        <input type="button" onClick={getTopSongs}/>
       {renderArtists()}
 
     </div>
