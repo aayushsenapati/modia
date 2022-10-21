@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Button from 'react-bootstrap/Button';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<App/>
+<div style={{height:"100%",width:"100%"}}>
+    <App/>
+    <Button/>
+    </div>
 );
 
 // If you want to start measuring performance in your app, pass a function
