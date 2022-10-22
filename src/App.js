@@ -120,7 +120,7 @@ const renderSongs = () => {
 
 
   return (
-    <div class="App" style={styleAppDiv} ref={ref}>
+    <div className="App" style={styleAppDiv} ref={ref}>
       <h1 id="p1" style={{margin:'0px'}}>Modia</h1>
       {!token?<a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>:<button onClick={logout}>Logout</button>}
       <h1>{`x: ${x}; y: ${y};`}{width};{height}</h1>
