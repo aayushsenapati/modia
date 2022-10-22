@@ -9,8 +9,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <div style={{height:"100%",width:"100%"}}>
     <App/>
-    <Button/>
-    </div>
+</div>
 );
 
 // If you want to start measuring performance in your app, pass a function
