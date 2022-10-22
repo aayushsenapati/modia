@@ -6,7 +6,7 @@ import axios from "axios";
 
 function Login() {
   const handleClick = async () => {
-    const client_id = "b10ac7cc459d474e961a6603c15da715";
+    const client_id = "54c6d6c8a6f347ba9c4d03f1d5be8f3c";
     const redirect_uri = "http://localhost:3000";
     const api_uri = "https://accounts.spotify.com/authorize";
     const scope = [
@@ -18,9 +18,7 @@ function Login() {
       "user-read-recently-played",
       "user-top-read",
     ];
-    window.location.href = `${api_uri}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope.join(
-      " "
-    )}&response_type=token&show_dialog=true`;
+    window.location.href = `${api_uri}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope.join(" ")}&response_type=token&show_dialog=true`;
   };
   return (
     <div>
