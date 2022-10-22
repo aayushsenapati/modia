@@ -10,7 +10,7 @@ function App() {
   const CLIENT_SECRET="085c8707b2ab4780bc9220b1bc4fa480"
   const REDIRECT_URI="http://localhost:3000"
   const AUTH_ENDPOINT="https://accounts.spotify.com/authorize"
-  const RESPONSE_TYPE="code"
+  const RESPONSE_TYPE="token"
   const [token,setToken]=useState("")
   const [x, setX] = useState()
   const [y, setY] = useState()
@@ -64,7 +64,7 @@ function App() {
     let token=window.localStorage.getItem("token")
 
     if(!token&&hash){
-      token=hash.split("=")[1]
+      token=hash.substring(1).split("&").find(elem=>elem.startsWith("access_token")).split("=")[1]
       window.location.assign("http://localhost:3000")
       console.log(token)
       window.localStorage.setItem("token",token)
