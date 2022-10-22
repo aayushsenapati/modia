@@ -8,7 +8,7 @@ import axios from "axios"
 function App() {
   const CLIENT_ID="54c6d6c8a6f347ba9c4d03f1d5be8f3c"
   const CLIENT_SECRET="085c8707b2ab4780bc9220b1bc4fa480"
-  const REDIRECT_URI="http%3A%2F%2Flocalhost:3000%2Fcallback"
+  const REDIRECT_URI="http://localhost:3000/callback"
   const AUTH_ENDPOINT="https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE="code"
   const [token,setToken]=useState("")
@@ -59,12 +59,13 @@ function App() {
   )
 
   useEffect(()=>{
-    const hash=window.location.hash
+    const hash=window.location.search
+    console.log(hash)
     let token=window.localStorage.getItem("token")
 
     if(!token&&hash){
-      token=hash.substring(1).split("&").find(elem=>elem.startsWith("access_token")).split("=")[1]
-      window.location.hash=""
+      token=hash.split("=")[1]
+      window.location.assign("http://localhost:3000")
       console.log(token)
       window.localStorage.setItem("token",token)
       setToken(token)
@@ -124,6 +125,7 @@ const renderSongs = () => {
   return (
     <div className="App" style={styleAppDiv} ref={ref}>
       <h1 id="p1" style={{margin:'0px'}}>Modia</h1>
+      {console.log(`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&redirect_uri=${REDIRECT_URI}&scope=user-read-currently-playing%20user-top-read`)}
       {!token?<a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&redirect_uri=${REDIRECT_URI}&scope=user-read-currently-playing%20user-top-read`}>Login to Spotify</a> :<button onClick={logout}>Logout</button>}
       <h1>{`x: ${x}; y: ${y};`}{width};{height}</h1>
       
