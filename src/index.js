@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import Login from './App';
 import reportWebVitals from './reportWebVitals';
 import Button from 'react-bootstrap/Button';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<div style={{height:"100%",width:"100%"}}>
-    <App/>
+<div>
+    <Login/>
 </div>
 );
 
