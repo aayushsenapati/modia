@@ -3,6 +3,9 @@ import "./App.css";
 import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import axios from "axios";
 
+
+
+
 export function App() {
   const [token, setToken] = useState("");
 
@@ -23,11 +26,15 @@ export function App() {
 
 
   return(
-    <div><Login/></div>
+    <div id="appDiv">{token?<MoodPalette/> :<Login/>}</div>
   )
 
 
 }
+
+
+
+
 
 function Login(){
   const handleClick = async () => {
@@ -50,14 +57,20 @@ function Login(){
 
 
   return (
-    <div>
+    <div id="loginDiv">
       <img src={logo} alt="spotify" />
       <button onClick={handleClick}>Connect Spotify</button>
     </div>
   );
 }
 
-function moodPalette(){
+
+
+
+
+
+
+function MoodPalette(){
   const [x, setX] = useState()
   const [y, setY] = useState()
   const ref = useRef(null)
@@ -71,10 +84,10 @@ function moodPalette(){
     
   }
 
-  if (y< (-(height/width)*x+height) && y>(height/width)*x) {styleAppDiv.backgroundColor="rgb(100,149,237)";styleAppDiv.color="rgb(237,189,100)"}//blue
-  if (y<(height/width)*x && y< (-(height/width)*x+height)) {styleAppDiv.backgroundColor="rgb(80,200,120)";styleAppDiv.color="rgb(200,10,92)"}//green
-  if (y>(-(height/width)*x+height) && y<(height/width)*x) {styleAppDiv.backgroundColor="rgb(255,195,0)";styleAppDiv.color="rgb(0,59,255)"}//yellow
-  if (y> (-(height/width)*x+height) && y>(height/width)*x) {styleAppDiv.backgroundColor="rgb(227,11,92)";styleAppDiv.color="rgb(11,227,148)"}//red
+  if (y< (-(height/width)*x+height) && y>(height/width)*x) {styleMood.backgroundColor="rgb(100,149,237)";styleMood.color="rgb(237,189,100)"}//blue
+  if (y<(height/width)*x && y< (-(height/width)*x+height)) {styleMood.backgroundColor="rgb(80,200,120)";styleMood.color="rgb(200,10,92)"}//green
+  if (y>(-(height/width)*x+height) && y<(height/width)*x) {styleMood.backgroundColor="rgb(255,195,0)";styleMood.color="rgb(0,59,255)"}//yellow
+  if (y> (-(height/width)*x+height) && y>(height/width)*x) {styleMood.backgroundColor="rgb(227,11,92)";styleMood.color="rgb(11,227,148)"}//red
 
   useLayoutEffect(() => {
     setWidth(ref.current.offsetWidth);
@@ -97,4 +110,11 @@ function moodPalette(){
     },
     [setX, setY]
   )
+  return (
+    <div id="moodPaletteDiv" style={styleMood} ref={ref}>
+      <h1 id="p1" style={{margin:'0px'}}>Modia</h1>
+      <h1>{`x: ${x}; y: ${y};`}{width};{height}</h1>
+    </div>
+  );
+
 }
