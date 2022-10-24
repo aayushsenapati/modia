@@ -2,6 +2,7 @@ import logo from "./modia.png";
 import "./App.css";
 import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import axios from "axios";
+import {useSpring,animated} from "react-spring"
 
 
 
@@ -10,6 +11,7 @@ export function App() {
   const [token, setToken] = useState("");
 
 
+  
   useEffect(() => {
     const hash = window.location.hash;
     if (hash) {
@@ -23,10 +25,15 @@ export function App() {
       console.log(token);
     }
   }, []);
-
-
+  
+  
+  const s1=useSpring({to: { opacity: 1 }, from: { opacity: 0 } ,delay:1000})
   return(
-    <div id="appDiv">{token?<MoodPalette/> :<Login/>}</div>
+    
+    <div id="appDiv">
+      {token?<animated.div style={s1} id="moodPaletteParent"><MoodPalette/></animated.div> :<animated.div style={s1} id="loginParent"><Login /></animated.div>}
+    </div>
+
   )
 
 
@@ -80,7 +87,8 @@ function MoodPalette(){
   let styleMood = {
     width:"75vw",
     height:"75vh",
-    transition:"background-color 1s ease, color 1s ease",
+    borderRadius:"5px",
+    transition:"background-color 0.8s ease, color 0.8s ease",
     
   }
 
