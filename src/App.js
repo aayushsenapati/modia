@@ -76,5 +76,25 @@ function moodPalette(){
   if (y>(-(height/width)*x+height) && y<(height/width)*x) {styleAppDiv.backgroundColor="rgb(255,195,0)";styleAppDiv.color="rgb(0,59,255)"}//yellow
   if (y> (-(height/width)*x+height) && y>(height/width)*x) {styleAppDiv.backgroundColor="rgb(227,11,92)";styleAppDiv.color="rgb(11,227,148)"}//red
 
-  
+  useLayoutEffect(() => {
+    setWidth(ref.current.offsetWidth);
+    setHeight(ref.current.offsetHeight);
+    //console.log(width,height)
+  });
+
+  useEffect(() => {
+      const update = (e) => {
+        setX(e.x)
+        setY(e.y)
+      }
+      console.log(width,height)
+      window.addEventListener('mousemove', update)
+      window.addEventListener('touchmove', update)
+      return () => {
+        window.removeEventListener('mousemove', update)
+        window.removeEventListener('touchmove', update)
+      }
+    },
+    [setX, setY]
+  )
 }
