@@ -78,8 +78,8 @@ function MoodPalette(){
   const[height,setHeight]=useState()
 
   let styleMood = {
-    width:"100vw",
-    height:"100vh",
+    width:"75vw",
+    height:"75vh",
     transition:"background-color 1s ease, color 1s ease",
     
   }
