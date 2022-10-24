@@ -1,15 +1,35 @@
-
 import logo from "./modia.png";
 import "./App.css";
 import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import axios from "axios";
 
+export function App() {
+  const [token, setToken] = useState("");
 
 
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const t = hash.substring(1).split("&")[0].split("=")[1];
+      window.localStorage.setItem("token",t)
+      window.location.assign("http://localhost:3000");
+    }
+    if(!token)
+    {
+      setToken(window.localStorage.getItem("token"))
+      console.log(token);
+    }
+  }, []);
 
-export function Login() {
+
+  return(
+    <div><Login/></div>
+  )
 
 
+}
+
+function Login(){
   const handleClick = async () => {
     const client_id = "54c6d6c8a6f347ba9c4d03f1d5be8f3c";
     const redirect_uri = "http://localhost:3000";
@@ -23,36 +43,20 @@ export function Login() {
       "user-read-recently-played",
       "user-top-read",
     ];
-    window.location.href = `${api_uri}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope.join(" ")}&response_type=token&show_dialog=true`;
-  };
-
-
-
-  const [token,setToken]=useState("")
-  
-  useEffect(()=>{
-    const hash=window.location.hash
-    if(hash&&!token)
-    {
-      const token=hash.substring(1).split("&")[0].split("=")[1]
-      setToken(token)
-      window.location.assign("http://localhost:3000")
-    }
-    
-  },[])
-  
-  console.log(token)
-
+    window.location.href = `${api_uri}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope.join(
+      " "
+    )}&response_type=token&show_dialog=true`
+  }
 
 
   return (
     <div>
-      <img
-        src={logo}
-        alt="spotify"
-      />
+      <img src={logo} alt="spotify" />
       <button onClick={handleClick}>Connect Spotify</button>
     </div>
   );
 }
 
+function moodPalette(){
+  
+}
