@@ -58,5 +58,8 @@ function Login(){
 }
 
 function moodPalette(){
-  
+  const [x, setX] = useState()
+  const [y, setY] = useState()
+  const[width,setWidth]=useState()
+  const[height,setHeight]=useState()
 }
