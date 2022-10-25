@@ -146,7 +146,7 @@ function MoodPalette(props) {
 }
 
 function Recommend() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(false);
 
   const Container = styled.div`
     background-color: white;
@@ -162,15 +162,16 @@ function Recommend() {
         "Content-Type": "application/json",
       },
     });
+    console.log(retData)
     setData(retData)
   };
+  
 
   getUserInfo()
-/*   const userInfo = {
-    userId: data.id,
-    userUrl: data.external_urls.spotify,
-    name: data.display_name,
-  }; */
-  if(data!=null)
-    return <Container>{data.display_name}</Container>;
+    return (
+    <Container>
+      hi
+    </Container>
+    )
 }
+
