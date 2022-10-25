@@ -1,13 +1,19 @@
 import logo from "./modia.png";
 import "./App.css";
-import { useEffect, useState, useRef, useLayoutEffect,useCallback} from "react";
+import {
+  useEffect,
+  useState,
+  useRef,
+  useLayoutEffect,
+  useCallback,
+} from "react";
 import axios from "axios";
 import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
 
 export function App() {
   const [token, setToken] = useState("");
-  const [clicked,setClicked] = useState(false);
+  const [clicked, setClicked] = useState(false);
   useEffect(() => {
     const hash = window.location.hash;
     if (hash) {
@@ -20,9 +26,7 @@ export function App() {
     }
   }, []);
 
-
-
-  const childState=e=>setClicked(e)//function prop
+  const childState = (e) => setClicked(e); //function prop
 
   const s1 = useSpring({
     to: { opacity: 1 },
@@ -30,25 +34,20 @@ export function App() {
     delay: 1000,
   });
 
-
-  if (token)
-  {
-    if(!clicked)
+  if (token) {
+    if (!clicked)
       return (
         <animated.div style={s1} id="moodPaletteParent">
-          <MoodPalette childState={childState}/>
+          <MoodPalette childState={childState} />
         </animated.div>
       );
-    else
-        return <Recommend/>
-      }
-  else
-  {
+    else return <Recommend />;
+  } else {
     return (
       <animated.div style={s1} id="loginParent">
         <Login />
       </animated.div>
-    )
+    );
   }
 }
 
@@ -128,7 +127,7 @@ function MoodPalette(props) {
     ref.current.addEventListener("mousemove", update);
     ref.current.addEventListener("touchmove", update);
     ref.current.addEventListener("click", updatec);
-/*     return () => {
+    /*     return () => {
       ref.current.removeEventListener("mousemove", update);
       ref.current.removeEventListener("touchmove", update);
     }; */
@@ -147,14 +146,13 @@ function MoodPalette(props) {
 }
 
 function Recommend() {
-const [data,setData]=useState()
+  const [data, setData] = useState();
 
   const Container = styled.div`
     background-color: white;
   `;
 
-
-  const token=window.localStorage.getItem("token")
+  const token = window.localStorage.getItem("token");
 
   const getUserInfo = async () => {
     const { retData } = await axios.get("https://api.spotify.com/v1/me", {
@@ -162,18 +160,17 @@ const [data,setData]=useState()
         Authorization: "Bearer " + token,
         "Content-Type": "application/json",
       },
-    })
-  
-  setData(retData)
+    });
 
-  }
+    setData(retData);
+  };
   const userInfo = {
     userId: data.id,
     userUrl: data.external_urls.spotify,
     name: data.display_name,
   };
-  
-  useEffect(getUserInfo,[])
+
+  useEffect(getUserInfo, []);
 
   return <Container>{userInfo.name}</Container>;
 }
