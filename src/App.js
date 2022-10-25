@@ -156,21 +156,21 @@ function Recommend() {
 
   const getUserInfo = async () => {
     
-    const { retData } = await axios.get("https://api.spotify.com/v1/me", {
+    const { data } = await axios.get("https://api.spotify.com/v1/me", {
       headers: {
         Authorization: "Bearer " + token,
         "Content-Type": "application/json",
       },
     });
-    console.log(retData)
-    setData(retData)
+    console.log(data)
+    setData(data)
   };
   
 
   getUserInfo()
     return (
     <Container>
-      hi
+      {data.display_name}
     </Container>
     )
 }
