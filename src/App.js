@@ -1,49 +1,58 @@
 import logo from "./modia.png";
 import "./App.css";
-import { useEffect, useState, useRef, useLayoutEffect } from "react";
+import { useEffect, useState, useRef, useLayoutEffect,useCallback} from "react";
 import axios from "axios";
-import {useSpring,animated} from "react-spring"
-
-
-
+import { useSpring, animated } from "react-spring";
+import styled from "styled-components";
 
 export function App() {
   const [token, setToken] = useState("");
-
-
-  
+  const [clicked,setClicked] = useState(false);
   useEffect(() => {
     const hash = window.location.hash;
     if (hash) {
       const t = hash.substring(1).split("&")[0].split("=")[1];
-      window.localStorage.setItem("token",t)
+      window.localStorage.setItem("token", t);
       window.location.assign("http://localhost:3000");
     }
-    if(!token)
-    {
-      setToken(window.localStorage.getItem("token"))
-      console.log(token);
+    if (!token) {
+      setToken(window.localStorage.getItem("token"));
     }
   }, []);
-  
-  
-  const s1=useSpring({to: { opacity: 1 }, from: { opacity: 0 } ,delay:1000})
-  return(
-    
-    <div id="appDiv">
-      {token?<animated.div style={s1} id="moodPaletteParent"><MoodPalette/></animated.div> :<animated.div style={s1} id="loginParent"><Login /></animated.div>}
-    </div>
-
-  )
 
 
+
+  const childState=e=>setClicked(e)//function prop
+
+  const s1 = useSpring({
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+    delay: 1000,
+  });
+
+
+  if (token)
+  {
+    if(!clicked)
+      return (
+        <animated.div style={s1} id="moodPaletteParent">
+          <MoodPalette childState={childState}/>
+        </animated.div>
+      );
+    else
+        return <Recommend/>
+      }
+  else
+  {
+    return (
+      <animated.div style={s1} id="loginParent">
+        <Login />
+      </animated.div>
+    )
+  }
 }
 
-
-
-
-
-function Login(){
+function Login() {
   const handleClick = async () => {
     const client_id = "54c6d6c8a6f347ba9c4d03f1d5be8f3c";
     const redirect_uri = "http://localhost:3000";
@@ -59,9 +68,8 @@ function Login(){
     ];
     window.location.href = `${api_uri}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope.join(
       " "
-    )}&response_type=token&show_dialog=true`
-  }
-
+    )}&response_type=token&show_dialog=true`;
+  };
 
   return (
     <div id="loginDiv">
@@ -71,31 +79,37 @@ function Login(){
   );
 }
 
-
-
-
-
-
-
-function MoodPalette(){
-  const [x, setX] = useState()
-  const [y, setY] = useState()
-  const ref = useRef(null)
-  const[width,setWidth]=useState()
-  const[height,setHeight]=useState()
+function MoodPalette(props) {
+  const [x, setX] = useState();
+  const [y, setY] = useState();
+  const ref = useRef(null);
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+  //const [clicked, setClicked] = useState(false);
 
   let styleMood = {
-    width:"75vw",
-    height:"75vh",
-    borderRadius:"5px",
-    transition:"background-color 0.8s ease, color 0.8s ease",
-    
-  }
+    width: "75vw",
+    height: "75vh",
+    borderRadius: "5px",
+    transition: "background-color 0.8s ease, color 0.8s ease",
+  };
 
-  if (y< (-(height/width)*x+height) && y>(height/width)*x) {styleMood.backgroundColor="rgb(100,149,237)";styleMood.color="rgb(237,189,100)"}//blue
-  if (y<(height/width)*x && y< (-(height/width)*x+height)) {styleMood.backgroundColor="rgb(80,200,120)";styleMood.color="rgb(200,10,92)"}//green
-  if (y>(-(height/width)*x+height) && y<(height/width)*x) {styleMood.backgroundColor="rgb(255,195,0)";styleMood.color="rgb(0,59,255)"}//yellow
-  if (y> (-(height/width)*x+height) && y>(height/width)*x) {styleMood.backgroundColor="rgb(227,11,92)";styleMood.color="rgb(11,227,148)"}//red
+  if (y < -(height / width) * x + height && y > (height / width) * x) {
+    styleMood.backgroundColor = "rgb(100,149,237)";
+    styleMood.color = "rgb(237,189,100)";
+  } //blue
+  if (y < (height / width) * x && y < -(height / width) * x + height) {
+    styleMood.backgroundColor = "rgb(80,200,120)";
+    styleMood.color = "rgb(200,10,92)";
+  } //green
+  if (y > -(height / width) * x + height && y < (height / width) * x) {
+    styleMood.backgroundColor = "rgb(255,195,0)";
+    styleMood.color = "rgb(0,59,255)";
+  } //yellow
+  if (y > -(height / width) * x + height && y > (height / width) * x) {
+    styleMood.backgroundColor = "rgb(227,11,92)";
+    styleMood.color = "rgb(11,227,148)";
+  } //red
 
   useLayoutEffect(() => {
     setWidth(ref.current.offsetWidth);
@@ -104,25 +118,37 @@ function MoodPalette(){
   });
 
   useEffect(() => {
-      const update = (e) => {
-        setX(e.x)
-        setY(e.y)
-      }
-      console.log(width,height)
-      window.addEventListener('mousemove', update)
-      window.addEventListener('touchmove', update)
-      return () => {
-        window.removeEventListener('mousemove', update)
-        window.removeEventListener('touchmove', update)
-      }
-    },
-    [setX, setY]
-  )
+    const update = (e) => {
+      setX(e.x);
+      setY(e.y);
+    };
+    const updatec = (e) => {
+      props.childState(true);
+    };
+    ref.current.addEventListener("mousemove", update);
+    ref.current.addEventListener("touchmove", update);
+    ref.current.addEventListener("click", updatec);
+/*     return () => {
+      ref.current.removeEventListener("mousemove", update);
+      ref.current.removeEventListener("touchmove", update);
+    }; */
+  }, [setX, setY]);
   return (
     <div id="moodPaletteDiv" style={styleMood} ref={ref}>
-      <h1 id="p1" style={{margin:'0px'}}>Modia</h1>
-      <h1>{`x: ${x}; y: ${y};`}{width};{height}</h1>
+      <h1 id="p1" style={{ margin: "0px" }}>
+        Modia
+      </h1>
+      <h1>
+        {`x: ${x}; y: ${y};`}
+        {width};{height}
+      </h1>
     </div>
   );
+}
 
+function Recommend() {
+  const Container = styled.div`
+    background-color: white;
+  `;
+  return <Container>Hello</Container>;
 }
