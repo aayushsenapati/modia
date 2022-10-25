@@ -150,5 +150,14 @@ function Recommend() {
   const Container = styled.div`
     background-color: white;
   `;
+  useEffect(() => {
+    const token=window.localStorage.getItem("token")
+    const getUserInfo = async () => {
+      const { data } = await axios.get("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      });
   return <Container>Hello</Container>;
 }
