@@ -146,7 +146,7 @@ function MoodPalette(props) {
 }
 
 function Recommend() {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
 
   const Container = styled.div`
     background-color: white;
@@ -155,22 +155,22 @@ function Recommend() {
   const token = window.localStorage.getItem("token");
 
   const getUserInfo = async () => {
+    
     const { retData } = await axios.get("https://api.spotify.com/v1/me", {
       headers: {
         Authorization: "Bearer " + token,
         "Content-Type": "application/json",
       },
     });
-
-    setData(retData);
+    setData(retData)
   };
-  const userInfo = {
+
+  getUserInfo()
+/*   const userInfo = {
     userId: data.id,
     userUrl: data.external_urls.spotify,
     name: data.display_name,
-  };
-
-  useEffect(getUserInfo, []);
-
-  return <Container>{userInfo.name}</Container>;
+  }; */
+  if(data!=null)
+    return <Container>{data.display_name}</Container>;
 }
