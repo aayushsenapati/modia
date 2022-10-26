@@ -113,7 +113,6 @@ function MoodPalette(props) {
   useEffect(() => {
     setWidth(ref.current.offsetWidth);
     setHeight(ref.current.offsetHeight);
-    //console.log(width,height)
   },[]);
 
   useEffect(() => {
@@ -121,6 +120,11 @@ function MoodPalette(props) {
       setX(e.x);
       setY(e.y);
     };
+/*     if(!width && !height){
+      setWidth(ref.current.offsetWidth);
+      setHeight(ref.current.offsetHeight); 
+    }
+    */
     const updatec = (e) => {
       const offsets=ref.current.getBoundingClientRect()
       const valence=(1/ref.current.offsetWidth)*(e.x-offsets.left)
@@ -134,7 +138,9 @@ function MoodPalette(props) {
       ref.current.removeEventListener("mousemove", update);
       ref.current.removeEventListener("touchmove", update);
     }; */
-  }, [setX, setY]);
+  },[setX,setY]);
+
+  
   return (
     <div id="moodPaletteDiv" style={styleMood} ref={ref}>
       <h1 id="p1" style={{ margin: "0px" }}>
