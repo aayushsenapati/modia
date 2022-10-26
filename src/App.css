@@ -10,7 +10,7 @@
   img {
     height: 20vh;
   }
-  button {
+  #loginDiv button {
     padding: 1rem 5rem;
     border-radius: 5rem;
     background-color: black;

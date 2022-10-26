@@ -146,16 +146,17 @@ function MoodPalette(props) {
 }
 
 function Recommend() {
-  const [userData, setUserData] = useState(false);
+  //const [userData, setUserData] = useState(false);
   const [userTop, setUserTop] = useState(false);
+  const [token, setToken] = useState(window.localStorage.getItem("token"));
 
   const Container = styled.div`
     background-color: white;
   `;
 
-  const token = window.localStorage.getItem("token");
+  //const token = window.localStorage.getItem("token");
 
-  const getUserInfo = async () => {
+/*   const getUserInfo = async () => {
     
     const { data } = await axios.get("https://api.spotify.com/v1/me", {
       headers: {
@@ -165,7 +166,7 @@ function Recommend() {
     });
     console.log(data)
     setUserData(data)
-  };
+  }; */
   
   const getUserTop = async () => {
     
@@ -181,13 +182,27 @@ function Recommend() {
     console.log(data)
     setUserTop(data)
   };
+
+
+  const logout=()=>{
+    window.localStorage.removeItem("token")
+    setToken(window.localStorage.getItem("token"))
+  }
   
 
-  getUserTop()
+  if(token){
+    if(!userTop)
+      getUserTop()
     return (
     <Container>
       {!userTop?"":userTop.items[0].name}
+      <button onClick={logout}>logout</button>
     </Container>
     )
+    }
+
+  else{
+    return <App/>
+  }
 }
 
