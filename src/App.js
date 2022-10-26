@@ -110,11 +110,11 @@ function MoodPalette(props) {
     styleMood.color = "rgb(11,227,148)";
   } //red
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setWidth(ref.current.offsetWidth);
     setHeight(ref.current.offsetHeight);
     //console.log(width,height)
-  });
+  },[]);
 
   useEffect(() => {
     const update = (e) => {
@@ -122,6 +122,9 @@ function MoodPalette(props) {
       setY(e.y);
     };
     const updatec = (e) => {
+      const offsets=ref.current.getBoundingClientRect()
+      const valence=(1/ref.current.offsetWidth)*(e.x-offsets.left)
+      console.log(valence)
       props.childState(true);
     };
     ref.current.addEventListener("mousemove", update);
@@ -146,9 +149,11 @@ function MoodPalette(props) {
 }
 
 function Recommend() {
-  //const [userData, setUserData] = useState(false);
+  const [userData, setUserData] = useState(false);
   const [userTop, setUserTop] = useState(false);
+  const [analData, setAnalData] = useState(false);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
+  const idArray = [];
 
   const Container = styled.div`
     background-color: white;
@@ -156,53 +161,77 @@ function Recommend() {
 
   //const token = window.localStorage.getItem("token");
 
-/*   const getUserInfo = async () => {
-    
+  const getUserInfo = async () => {
     const { data } = await axios.get("https://api.spotify.com/v1/me", {
       headers: {
         Authorization: "Bearer " + token,
         "Content-Type": "application/json",
       },
     });
-    console.log(data)
-    setUserData(data)
-  }; */
-  
-  const getUserTop = async () => {
-    
-    const { data } = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-Type": "application/json",
-      },
-      params:{
-        time_range:"medium_term"
-      }
-    });
-    console.log(data)
-    setUserTop(data)
+    console.log(data);
+    setUserData(data);
   };
 
+  const getUserTop = async () => {
+    const { data } = await axios.get(
+      "https://api.spotify.com/v1/me/top/tracks",
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+        params: {
+          time_range: "medium_term",
+          limit:50,
+        },
+      }
+    );
+    console.log(data);
+    setUserTop(data);
+  };
 
-  const logout=()=>{
-    window.localStorage.removeItem("token")
-    setToken(window.localStorage.getItem("token"))
-  }
-  
+  const getSongAnal = async () => {
+    const { data } = await axios.get(
+      "https://api.spotify.com/v1/audio-features",
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+        params: {
+          ids: idArray.join(","),
+        },
+      }
+    );
+    console.log(data);
+    setAnalData(data);
+  };
 
-  if(token){
-    if(!userTop)
-      getUserTop()
-    return (
-    <Container>
-      {!userTop?"":userTop.items[0].name}
-      <button onClick={logout}>logout</button>
-    </Container>
-    )
+  const logout = () => {
+    window.localStorage.removeItem("token");
+    setToken(window.localStorage.getItem("token"));
+  };
+
+  if (token) {
+    if (!userTop) {
+      getUserTop();
     }
-
-  else{
-    return <App/>
+    else {
+      for (let i = 0; i < userTop.items.length; i++) {
+        idArray.push(userTop.items[i].id);
+      }
+      console.log(idArray);
+      if (!analData) {
+        getSongAnal();
+      }
+    }
+    return (
+      <Container>
+        {!userTop ? "" : userTop.items[0].name}
+        <button onClick={logout}>logout</button>
+      </Container>
+    );
+  } else {
+    return <App />;
   }
 }
-
