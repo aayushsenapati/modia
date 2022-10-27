@@ -195,7 +195,7 @@ function Recommend(props) {
           "Content-Type": "application/json",
         },
         params: {
-          time_range: "medium_term",
+          time_range: "long_term",
           limit:50,
         },
       }
@@ -221,6 +221,15 @@ function Recommend(props) {
     setAnalData(data);
   };
 
+
+
+  const renderSongs = () => {
+    return objectArray.map((song) => (
+        <div key={song.track.id}>
+            <h4>{song.track.name}:{releFunc(song)}</h4>
+        </div>
+    ))
+  }
   const logout = () => {
     window.localStorage.removeItem("token");
     setToken(window.localStorage.getItem("token"));
@@ -249,21 +258,18 @@ function Recommend(props) {
       }
       else
       {
-        const objectArray=userTop.items.map((x,i)=>{
+        var objectArray=userTop.items.map((x,i)=>{
             analData.audio_features[i].track=x
             return analData.audio_features[i]
           }
           )
         objectArray.sort((a,b)=>releFunc(a)-releFunc(b))
         console.log(objectArray)
-        console.log(releFunc(objectArray[0]),objectArray[0].track.name)
-        console.log(releFunc(objectArray[1]),objectArray[1].track.name)
         return (
           <Container>
-            <h1>{!userTop ? "" : userTop.items[3].name}</h1>
             <h1>Valence:{props.valence}</h1>
             <h1>Energy:{props.energy}</h1>
-            <h1>Irrelevance:{releFunc(analData.audio_features[3])}</h1>
+            {renderSongs()}
             <button onClick={logout}>logout</button>
           </Container>
         );
