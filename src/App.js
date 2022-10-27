@@ -14,6 +14,8 @@ import styled from "styled-components";
 export function App() {
   const [token, setToken] = useState("");
   const [clicked, setClicked] = useState(false);
+  const [valence, setValence] = useState();
+  const [energy, setEnergy] = useState();
   useEffect(() => {
     const hash = window.location.hash;
     if (hash) {
@@ -26,7 +28,12 @@ export function App() {
     }
   }, []);
 
-  const childState = (e) => setClicked(e); //function prop
+  const childState = (clicked,valence,energy) => {
+    setClicked(clicked); //function prop
+    setValence(valence); //function prop
+    setEnergy(energy); //function prop
+
+  }
 
   const s1 = useSpring({
     to: { opacity: 1 },
@@ -41,7 +48,7 @@ export function App() {
           <MoodPalette childState={childState} />
         </animated.div>
       );
-    else return <Recommend />;
+    else return <Recommend valence={valence} energy={energy}/>;
   } else {
     return (
       <animated.div style={s1} id="loginParent">
@@ -128,8 +135,9 @@ function MoodPalette(props) {
     const updatec = (e) => {
       const offsets=ref.current.getBoundingClientRect()
       const valence=(1/ref.current.offsetWidth)*(e.x-offsets.left)
-      console.log(valence)
-      props.childState(true);
+      const energy=(1/ref.current.offsetHeight)*(e.y-offsets.top)
+      console.log(valence,energy)
+      props.childState(true,valence,energy);
     };
     ref.current.addEventListener("mousemove", update);
     ref.current.addEventListener("touchmove", update);
@@ -140,7 +148,7 @@ function MoodPalette(props) {
     }; */
   },[setX,setY]);
 
-  
+
   return (
     <div id="moodPaletteDiv" style={styleMood} ref={ref}>
       <h1 id="p1" style={{ margin: "0px" }}>
@@ -154,7 +162,7 @@ function MoodPalette(props) {
   );
 }
 
-function Recommend() {
+function Recommend(props) {
   const [userData, setUserData] = useState(false);
   const [userTop, setUserTop] = useState(false);
   const [analData, setAnalData] = useState(false);
@@ -218,26 +226,51 @@ function Recommend() {
     setToken(window.localStorage.getItem("token"));
   };
 
-  if (token) {
-    if (!userTop) {
+  const releFunc=(object)=>{
+    return(Math.abs(props.valence-object.valence)+Math.abs(props.energy-object.energy))
+  }
+
+  if (token)
+  {
+    if (!userTop) 
+    {
       getUserTop();
     }
-    else {
-      for (let i = 0; i < userTop.items.length; i++) {
+    else 
+    {
+      for (let i = 0; i < userTop.items.length; i++) 
+      {
         idArray.push(userTop.items[i].id);
       }
       console.log(idArray);
-      if (!analData) {
+      if (!analData) 
+      {
         getSongAnal();
       }
+      else
+      {
+        const objectArray=userTop.items.map((x,i)=>{
+            analData.audio_features[i].track=x
+            return analData.audio_features[i]
+          }
+          )
+        objectArray.sort((a,b)=>releFunc(a)-releFunc(b))
+        console.log(objectArray)
+        console.log(releFunc(objectArray[0]),objectArray[0].track.name)
+        console.log(releFunc(objectArray[1]),objectArray[1].track.name)
+        return (
+          <Container>
+            <h1>{!userTop ? "" : userTop.items[3].name}</h1>
+            <h1>Valence:{props.valence}</h1>
+            <h1>Energy:{props.energy}</h1>
+            <h1>Irrelevance:{releFunc(analData.audio_features[3])}</h1>
+            <button onClick={logout}>logout</button>
+          </Container>
+        );
+      }
     }
-    return (
-      <Container>
-        {!userTop ? "" : userTop.items[0].name}
-        <button onClick={logout}>logout</button>
-      </Container>
-    );
-  } else {
+  }
+  else {
     return <App />;
   }
 }
