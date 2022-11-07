@@ -94,31 +94,31 @@ function MoodPalette(props) {
   //const [clicked, setClicked] = useState(false);
 
   let styleMood = {
-    width: "75vw",
-    height: "85vh",
-    borderRadius: "20px",
-    border:'solid 3px black',
-    transition: "background-color 0.8s ease, color 0.8s ease",
-    position: 'relative',
-    left: '0px',
-    top: '0px'
+      width: "75vw",
+      height: "85vh",
+      borderRadius: "20px",
+      border:'solid 3px black',
+      transition: "background-color 0.8s ease, color 0.8s ease",
+      position: 'relative',
+      left: '0px',
+      top: '0px'
   }
  
 
   if (y < -(height / width) * x + height && y > (height / width) * x) {
-    styleMood.backgroundColor = "#5DB7EA";
+    styleMood.backgroundColor = "#5DB7EA";  //blue
     styleMood.color = "rgb(237,189,100)";
   } //blue
   if (y < ((height / width)) * x && y < -(height / width) * x + height) {
-    styleMood.backgroundColor = "#8AE3B7";
+    styleMood.backgroundColor = "#6fffa9";  // green
     styleMood.color = "rgb(200,10,92)";
   } //green
   if (y > -(height / width) * x + height && y < (height / width) * x) {
-    styleMood.backgroundColor = "#FFE694";
+    styleMood.backgroundColor = "#fff494";  //yello
     styleMood.color = "rgb(0,59,255)";
   } //yellow
   if (y > -(height / width) * x + height && y > (height / width) * x) {
-    styleMood.backgroundColor = "#FBAFCC";
+    styleMood.backgroundColor = "#fb7890";  //red
     styleMood.color = "#31ba02";
   } //red
 
@@ -129,9 +129,10 @@ function MoodPalette(props) {
 
   useEffect(() => {
     const update = (e) => {
-      setX(e.x);
-      setY(e.y);
-    };
+        const offset = ref.current.getBoundingClientRect();
+        setX(e.x-offset.left);
+        setY(e.y-offset.top);
+      };
 /*     if(!width && !height){
       setWidth(ref.current.offsetWidth);
       setHeight(ref.current.offsetHeight); 
