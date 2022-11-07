@@ -95,26 +95,31 @@ function MoodPalette(props) {
 
   let styleMood = {
     width: "75vw",
-    height: "75vh",
-    borderRadius: "5px",
+    height: "85vh",
+    borderRadius: "20px",
+    border:'solid 3px black',
     transition: "background-color 0.8s ease, color 0.8s ease",
-  };
+    position: 'relative',
+    left: '0px',
+    top: '0px'
+  }
+ 
 
   if (y < -(height / width) * x + height && y > (height / width) * x) {
-    styleMood.backgroundColor = "rgb(100,149,237)";
+    styleMood.backgroundColor = "#5DB7EA";
     styleMood.color = "rgb(237,189,100)";
   } //blue
-  if (y < (height / width) * x && y < -(height / width) * x + height) {
-    styleMood.backgroundColor = "rgb(80,200,120)";
+  if (y < ((height / width)) * x && y < -(height / width) * x + height) {
+    styleMood.backgroundColor = "#8AE3B7";
     styleMood.color = "rgb(200,10,92)";
   } //green
   if (y > -(height / width) * x + height && y < (height / width) * x) {
-    styleMood.backgroundColor = "rgb(255,195,0)";
+    styleMood.backgroundColor = "#FFE694";
     styleMood.color = "rgb(0,59,255)";
   } //yellow
   if (y > -(height / width) * x + height && y > (height / width) * x) {
-    styleMood.backgroundColor = "rgb(227,11,92)";
-    styleMood.color = "rgb(11,227,148)";
+    styleMood.backgroundColor = "#FBAFCC";
+    styleMood.color = "#31ba02";
   } //red
 
   useEffect(() => {
@@ -154,10 +159,14 @@ function MoodPalette(props) {
       <h1 id="p1" style={{ margin: "0px" }}>
         Modia
       </h1>
-      <h1>
+      <span style={{position:"absolute",top:"10%"}}>Somber</span>  
+      <span style={{position:"absolute",top:"90%"}}>Joyous</span>  
+      <span style={{position:"absolute",left:"10%",top:"50%"}}>Mellow</span>  
+      <span style={{position:"absolute",left:"90%",top:"50%"}}>Upbeat</span>  
+      <h4 style={{position:"absolute",left:"2%",top:"90%"}}>
         {`x: ${x}; y: ${y};`}
         {width};{height}
-      </h1>
+      </h4>
     </div>
   );
 }
@@ -195,7 +204,7 @@ function Recommend(props) {
           "Content-Type": "application/json",
         },
         params: {
-          time_range: "long_term",
+          time_range: "short_term",
           limit:50,
         },
       }
