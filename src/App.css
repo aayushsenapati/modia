@@ -6,16 +6,21 @@
   height: 100vh;
   width: 100vw;
   background-color: #00c524;
-  gap: 5rem;}
-  img {
-    height: 20vh;
-  }
-  #loginDiv button {
-    padding: 1rem 5rem;
-    border-radius: 5rem;
-    background-color: black;
-    color: #a0a0a0;
-    border: none;
-    font-size: 1.4rem;
-    cursor: pointer;
-  }
+  gap: 5rem;
+}
+
+#moodPaletteDiv{
+  cursor: url('cursor.svg') 8 -8, url('cursor.png') 8 -8, auto; 
+}
+img {
+  height: 20vh;
+}
+#loginDiv button {
+  padding: 1rem 5rem;
+  border-radius: 5rem;
+  background-color: black;
+  color: #a0a0a0;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
