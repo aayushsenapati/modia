@@ -253,7 +253,7 @@ function Recommend(props) {
         "Content-Type": "application/json",
       },
     });
-    console.log(data);
+    console.log("this is user data:",data);
     setUserData(data);
   };
 
@@ -271,7 +271,7 @@ function Recommend(props) {
         },
       }
     );
-    console.log(data);
+    console.log("this is user top data:",data);
     setUserTop(data);
   };
 
@@ -288,7 +288,7 @@ function Recommend(props) {
         },
       }
     );
-    console.log(data);
+    console.log("this is anal data:",data);
     setAnalData(data);
   };
 
@@ -314,13 +314,15 @@ function Recommend(props) {
   };
 
   if (token) {
+    if(!userData)
+      getUserInfo()
     if (!userTop) {
       getUserTop();
     } else {
       for (let i = 0; i < userTop.items.length; i++) {
         idArray.push(userTop.items[i].id);
       }
-      console.log(idArray);
+      console.log("this is id array:",idArray);
       if (!analData) {
         getSongAnal();
       } else {
@@ -329,7 +331,7 @@ function Recommend(props) {
           return analData.audio_features[i];
         });
         objectArray.sort((a, b) => releFunc(a) - releFunc(b));
-        console.log(objectArray);
+        console.log("this is sorted object array:",objectArray);
         return (
           <Container>
             <h1>Valence:{props.valence}</h1>
