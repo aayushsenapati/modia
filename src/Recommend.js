@@ -5,7 +5,7 @@ import {
     useLayoutEffect,
     useCallback,
   } from "react";
-import axios from "axios";
+  import axios from "axios";
 import styled from "styled-components";
 
 
@@ -20,6 +20,8 @@ function Recommend(props) {
     const Container = styled.div`
       background-color: white;
     `;
+
+    console.log("in Recommend",props.valence,props.energy);
   
     //const token = window.localStorage.getItem("token");
   
@@ -119,7 +121,7 @@ function Recommend(props) {
       }
     } else {
       // return <App />;
-      <h1>NO Value Recieved</h1>
+      <h1>NO Value</h1>
     }
   }
 

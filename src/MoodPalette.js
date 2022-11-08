@@ -1,18 +1,21 @@
 import "./App.css";
 import styled from "styled-components";
+import {useNavigate} from 'react-router-dom';
+
 
 
 import {
-    useEffect,
-    useState,
-    useRef,
-    useLayoutEffect,
-    useCallback,
-  } from "react";
+  useEffect,
+  useState,
+  useRef,
+  useLayoutEffect,
+  useCallback,
+} from "react";
 
 function MoodPalette(props) {
-    const [x, setX] = useState();
-    const [y, setY] = useState();
+  const [x, setX] = useState();
+  const [y, setY] = useState();
+  let navigate = useNavigate();
     const ref = useRef(null);
     const [width, setWidth] = useState();
     const [height, setHeight] = useState();
@@ -25,6 +28,7 @@ function MoodPalette(props) {
     let styleMood = {
       width: "75vw",
       height: "85vh",
+      margin: 'auto',
       borderRadius: "20px",
       border: "solid 3px black",
       transition: "background-color 1s ease, color 1s ease",
@@ -97,6 +101,7 @@ function MoodPalette(props) {
         const energy = (1 / ref.current.offsetHeight) * (e.y - offsets.top); //div coords
         console.log(valence, energy);
         props.childState(true, valence, energy);
+        navigate('/rec', {replace: true})
       };
       ref.current.addEventListener("mousemove", update);
       ref.current.addEventListener("touchmove", update);

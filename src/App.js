@@ -59,18 +59,21 @@ export function App() {
       );
     else return <Recommend valence={valence} energy={energy} />;
   } else {*/
+  console.log("in app",valence, energy)
     return (
       // <animated.div style={s1} id="loginParent">
       //   <Login />
       // </animated.div>
       <>
+        <h1>In App</h1>
         <Routes>
-          <Route path = "/" exact element ={<MoodPalette childState = {childState}/>}></Route>
-          <Route path = "/login" exact  element = {<Login/>}></Route>
-          <Route path = "/rec" exact  element = {<Recommend/>}></Route>
+          <Route path = "/" exact element ={<MoodPalette childState = {childState}/>}/>
+          <Route path = "/login" exact  element = {<Login/>}/>
+          <Route path = "/rec" exact  element = {<Recommend valence={valence} energy={energy}/>}/>
         </Routes>
       </>
     );
+
   
 }
 
