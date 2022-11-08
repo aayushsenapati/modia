@@ -20,11 +20,12 @@ export function App() {
     const hash = window.location.hash;
     if (hash) {
       const t = hash.substring(1).split("&")[0].split("=")[1];
-      window.localStorage.setItem("token", t);
+      window.sessionStorage.setItem("token", t);
       window.location.assign("http://localhost:3000");
+      
     }
     if (!token) {
-      setToken(window.localStorage.getItem("token"));
+      setToken(window.sessionStorage.getItem("token"));
     }
   }, []);
 
@@ -236,7 +237,7 @@ function Recommend(props) {
   const [userData, setUserData] = useState(false);
   const [userTop, setUserTop] = useState(false);
   const [analData, setAnalData] = useState(false);
-  const [token, setToken] = useState(window.localStorage.getItem("token"));
+  const [token, setToken] = useState(window.sessionStorage.getItem("token"));
   const idArray = [];
 
   const Container = styled.div`
@@ -301,8 +302,8 @@ function Recommend(props) {
     ));
   };
   const logout = () => {
-    window.localStorage.removeItem("token");
-    setToken(window.localStorage.getItem("token"));
+    window.sessionStorage.removeItem("token");
+    setToken(window.sessionStorage.getItem("token"));
   };
 
   const releFunc = (object) => {
