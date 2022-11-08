@@ -7,6 +7,7 @@ import {
   } from "react";
   import axios from "axios";
 import styled from "styled-components";
+import {useNavigate} from "react-router-dom";
 
 
 
@@ -16,6 +17,7 @@ function Recommend(props) {
     const [analData, setAnalData] = useState(false);
     const [token, setToken] = useState(window.sessionStorage.getItem("token"));
     const idArray = [];
+    let navigate = useNavigate();
   
     const Container = styled.div`
       background-color: white;
@@ -83,6 +85,7 @@ function Recommend(props) {
     const logout = () => {
       window.sessionStorage.removeItem("token");
       setToken(window.sessionStorage.getItem("token"));
+      navigate("/login", { replace: true })
     };
   
     const releFunc = (object) => {

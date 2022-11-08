@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 
 
+
 import {
   useEffect,
   useState,
@@ -23,6 +24,7 @@ function MoodPalette(props) {
     const [offSetXR, setOffSetXR] = useState(0);
     const [offSetYT, setOffSetYT] = useState(0);
     const [offSetYB, setOffSetYB] = useState(0);
+    
   
     let styleMood = {
       width: "75vw",

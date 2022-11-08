@@ -25,21 +25,37 @@ export function App() {
   const [valence, setValence] = useState();
   const [energy, setEnergy] = useState();
   let navigate = useNavigate();
+
   useEffect(() => {
-    const hash = window.location.hash;
+
+    let hash = window.location.hash;
+
     if (hash) {
       const t = hash.substring(1).split("&")[0].split("=")[1];
       window.sessionStorage.setItem("token", t);
-      window.location.assign("http://localhost:3000");
-
+      setToken(t);
+      
+      
     }
+    console.log(token)
     if (!token) {
-      setToken(window.sessionStorage.getItem("token"));
+      navigate("/login", { replace: true })
     }
-  }, []);
+
+    if (token) {
+
+      if (!clicked) {
+        navigate("/", { replace: true })
+      }
+      else {
+        navigate("/rec", { replace: true })
+      }
+    }
+
+    },[token,clicked]);
 
 
-  useEffect(() => {
+/*   useEffect(() => {
     if (token) {
       if (!clicked) {
         navigate("/", { repalce: true })
@@ -50,7 +66,7 @@ export function App() {
     }
     else
       navigate("/login", { repalce: true })
-  }, [setToken,setClicked]);
+  }, []); */
 
   const childState = (clicked, valence, energy) => {
     setClicked(clicked); //function prop
