@@ -199,7 +199,7 @@ function MoodPalette(props) {
       <span
         style={{
           position: "absolute",
-          top: "90%",
+          top: "85%",
           fontSize: 1.5 + offSetYB + "em",
         }}
       >
@@ -218,8 +218,9 @@ function MoodPalette(props) {
       <span
         style={{
           position: "absolute",
-          left: "90%",
+          left: "80%",
           top: "50%",
+          textAlign:'left',
           fontSize: 1.5 + offSetXR + "em",
         }}
       >
