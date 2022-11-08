@@ -20,7 +20,7 @@ import Recommend from "./Recommend";
 
 
 export function App() {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(window.sessionStorage.getItem("token"));
   const [clicked, setClicked] = useState(false);
   const [valence, setValence] = useState();
   const [energy, setEnergy] = useState();

@@ -122,9 +122,6 @@ function Recommend(props) {
           );
         }
       }
-    } else {
-      // return <App />;
-      <h1>NO Value</h1>
     }
   }
 
