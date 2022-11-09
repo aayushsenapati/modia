@@ -24,6 +24,8 @@ export function App() {
   const [clicked, setClicked] = useState(false);
   const [valence, setValence] = useState();
   const [energy, setEnergy] = useState();
+  const [bgColor, setBgColor] = useState();
+  const [color, setColor] = useState();
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -68,10 +70,13 @@ export function App() {
       navigate("/login", { repalce: true })
   }, []); */
 
-  const childState = (clicked, valence, energy) => {
+  const childState = (clicked, valence, energy,bgColor,color) => {
     setClicked(clicked); //function prop
     setValence(valence); //function prop
     setEnergy(energy); //function prop
+    setBgColor(bgColor)
+    setColor(color)
+
   };
 
   const s1 = useSpring({
@@ -98,11 +103,10 @@ export function App() {
     //   <Login />
     // </animated.div>
     <>
-      <h1>In App</h1>
       <Routes>
         <Route path="/" exact element={<MoodPalette childState={childState} />} />
         <Route path="/login" exact element={<Login />} />
-        <Route path="/rec" exact element={<Recommend valence={valence} energy={energy} />} />
+        <Route path="/rec" exact element={<Recommend valence={valence} energy={energy} bgColor={bgColor} color={color}/>} />
       </Routes>
     </>
   );

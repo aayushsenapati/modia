@@ -30,6 +30,7 @@ function MoodPalette(props) {
       width: "75vw",
       height: "85vh",
       margin: 'auto',
+      marginTop:"50px",
       borderRadius: "20px",
       border: "solid 3px black",
       transition: "background-color 1s ease, color 1s ease",
@@ -39,21 +40,21 @@ function MoodPalette(props) {
     };
 
     if (y < -(height / width) * x + height && y > (height / width) * x) {
-        styleMood.backgroundColor = "#5DB7EA"; //blue
-        styleMood.color = "rgb(237,189,100)";
-      } //blue
-      if (y < (height / width) * x && y < -(height / width) * x + height) {
-        styleMood.backgroundColor = "#6fffa9"; // green
-        styleMood.color = "rgb(200,10,92)";
-      } //green
-      if (y > -(height / width) * x + height && y < (height / width) * x) {
-        styleMood.backgroundColor = "#fff494"; //yellow
-        styleMood.color = "rgb(0,59,255)";
-      } //yellow
-      if (y > -(height / width) * x + height && y > (height / width) * x) {
-        styleMood.backgroundColor = "#fb7890"; //red
-        styleMood.color = "#31ba02";
-      } //red
+      styleMood.backgroundColor = "#3144b7"; //blue
+      styleMood.color = "#9cf0e1";
+    } //blue
+    if (y < (height / width) * x && y < -(height / width) * x + height) {
+      styleMood.backgroundColor = "#8bf677"; // green
+      styleMood.color = "#7f14ff";
+    } //green
+    if (y > -(height / width) * x + height && y < (height / width) * x) {
+      styleMood.backgroundColor = "#fff914"; //yellow
+      styleMood.color = "#d9006a";
+    } //yellow
+    if (y > -(height / width) * x + height && y > (height / width) * x) {
+      styleMood.backgroundColor = "#ff4e2a"; //red
+      styleMood.color = "#290740";
+    } //red
         
     useEffect(() => {
       setWidth(ref.current.offsetWidth);
@@ -101,7 +102,9 @@ function MoodPalette(props) {
         const valence = (1 / ref.current.offsetWidth) * (e.x - offsets.left); //div coords
         const energy = (1 / ref.current.offsetHeight) * (e.y - offsets.top); //div coords
         console.log(valence, energy);
-        props.childState(true, valence, energy);
+        props.childState(true, valence, energy,ref.current.style.backgroundColor,ref.current.style.color);
+        console.log(ref.current.style.backgroundColor)
+        console.log(ref.current.style.color)
         // navigate('/rec', {replace: true})
       };
       ref.current.addEventListener("mousemove", update);
