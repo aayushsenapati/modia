@@ -38,7 +38,7 @@ function MoodPalette(props) {
       top: "0px",
     };
 
-`    if (y < -(height / width) * x + height && y > (height / width) * x) {
+    if (y < -(height / width) * x + height && y > (height / width) * x) {
         styleMood.backgroundColor = "#3144b7"; //blue
         styleMood.color = "#9cf0e1";
       } //blue
@@ -53,7 +53,7 @@ function MoodPalette(props) {
       if (y > -(height / width) * x + height && y > (height / width) * x) {
         styleMood.backgroundColor = "#ff4e2a"; //red
         styleMood.color = "#290740";
-      } //red`
+      } //red
         
     useEffect(() => {
       setWidth(ref.current.offsetWidth);
