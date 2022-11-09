@@ -77,11 +77,11 @@ function Recommend(props) {
   
     const renderSongs = () => {
       return objectArray.map((song) => (
-        <div key={song.track.id}>
-          <h4>
+        // <div key={song.track.id}>
+          <Slide>
             {song.track.name}:{releFunc(song)}
-          </h4>
-        </div>
+          </Slide>
+        /* </div> */
       ));
     };
     const logout = () => {
@@ -121,20 +121,17 @@ function Recommend(props) {
               <CarouselProvider
         naturalSlideWidth={100}
         naturalSlideHeight={150}
-        totalSlides={4}
+        totalSlides={100}
           >
            
         <Slider style = {{backgroundColor : "black", color : "white", width : "200px", textAlign : "center", margin : "auto", borderRadius : "10px"}}>
-          <Slide index={0}><h1>{objectArray[0].track.name}</h1></Slide>
-          <Slide index={1}><h1>{objectArray[1].track.name}</h1></Slide>
-          <Slide index={2}><h1>{objectArray[2].track.name}</h1></Slide>
-          <Slide index={3}><h1>{objectArray[3].track.name}</h1></Slide>
+          {renderSongs()}
         </Slider>
       
         <ButtonBack>Back</ButtonBack>
         <ButtonNext>Next</ButtonNext>
       </CarouselProvider>
-              {renderSongs()}
+              {/* {renderSongs()} */}
               <button onClick={logout}>logout</button>
             </Container>
           );
