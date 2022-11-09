@@ -77,11 +77,12 @@ function Recommend(props) {
   
     const renderSongs = () => {
       return objectArray.map((song) => (
-        // <div key={song.track.id}>
-          <Slide>
-            {song.track.name}:{releFunc(song)}
+        <div key={song.track.id}>
+          <Slide style = {{backgroundColor:'black', border : "3px solid green"}}>
+            <h1>{song.track.name}</h1>
+            <img src={song.track.album.images[0].url} alt="image"></img>
           </Slide>
-        /* </div> */
+        </div> 
       ));
     };
     const logout = () => {
@@ -124,7 +125,7 @@ function Recommend(props) {
         totalSlides={100}
           >
            
-        <Slider style = {{backgroundColor : "black", color : "white", width : "200px", textAlign : "center", margin : "auto", borderRadius : "10px"}}>
+        <Slider style = {{backgroundColor : "green", color : "white", width : "300px", textAlign : "center", margin : "auto", borderRadius : "10px"}}>
           {renderSongs()}
         </Slider>
       
