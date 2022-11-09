@@ -1,7 +1,6 @@
 //import app from "./server.js";
-import mongoose from "mongoose";
-import * as dotenv from "dotenv";
-dotenv.config();
+const mongoose = require("mongoose");
+require('dotenv').config();
 console.log(process.env.MODIA_DB_URI)
 
 
