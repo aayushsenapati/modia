@@ -1,19 +1,13 @@
-const express = require("express");
+import express from "express";
+import cors from "cors";
+import id_play from "./api/ids.route.js"
 const app = express();
-const cors = require("cors");
 //require("dotenv").config({ path: "./config.env" });
 const port = 5000;
 app.use(cors());
 app.use(express.json());
-app.use(require("./routes/record"));
-// get driver connection
-const dbo = require("./db/conn");
+app.use("/idplay",id_play)
+app.use("*",(req, res)=>res.status(404).json({error:"not found"}))
 
-app.listen(port, () => {
-    // perform a database connection when server starts
-    dbo.connectToServer(function (err) {
-        if (err) console.error(err);
 
-    });
-    console.log(`Server is running on port: ${port}`);
-});
+export default app
