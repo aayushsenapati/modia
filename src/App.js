@@ -16,6 +16,7 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import MoodPalette from "./MoodPalette";
 import Login from "./Login";
 import Recommend from "./Recommend";
+import Navigate from "./Navigate";
 
 
 
@@ -103,6 +104,7 @@ export function App() {
     //   <Login />
     // </animated.div>
     <>
+    <Navigate/>
       <Routes>
         <Route path="/" exact element={<MoodPalette childState={childState} />} />
         <Route path="/login" exact element={<Login />} />
