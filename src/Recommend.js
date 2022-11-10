@@ -28,7 +28,8 @@ function Recommend(props) {
       background-color: #121212;
       color:white;
       height : 100vh;
-      width : 50vw;
+      width : 100vw;
+      overflow-y: auto;
       
     `;
 
@@ -123,7 +124,7 @@ function Recommend(props) {
         objectArray.sort((a, b) => releFunc(a) - releFunc(b));
         console.log("ObjectArray:",objectArray);
         return (
-          <Container style ={{width:'100%',height:'100%'}}>
+          <Container>
             <h1 style={{marginTop:"0px"}}>Valence:{props.valence}</h1>
             <h1>Energy:{props.energy}</h1>
             <h1>Color:{props.color}</h1>
@@ -143,7 +144,7 @@ function Recommend(props) {
               </div>
             </CarouselProvider>
             {/* {renderSongs()} */}
-            <Button style = {{}} onClick={logout}>logout</Button>
+            <Button onClick={logout}>logout</Button>
           </Container>
         );
       }

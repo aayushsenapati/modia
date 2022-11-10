@@ -1,4 +1,4 @@
-#moodPaletteParent,#loginParent,#moodPaletteDiv,#loginDiv{
+#moodPaletteParent,#moodPaletteDiv,#loginDiv{
   display: flex;
   justify-content: center;
   align-items: center;
