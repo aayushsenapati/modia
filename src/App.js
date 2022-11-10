@@ -31,18 +31,18 @@ export function App() {
   const [color, setColor] = useState();
   let navigate = useNavigate();
 
-// useEffect(()=>{
+  // useEffect(()=>{
 
-//   if(!token)
-//   {
-//     ref.current.style.display = "none";
-//   }
-//   if(token)
-//   {
-//     ref.current.style.display = "inline";
-//   }
+  //     if(!token)
+  //     {
+  //       ref.current.style.display = "none";
+  //     }
+  //     if(token)
+  //     {
+  //       ref.current.style.display = "inline";
+  //     }
 
-// }, [])
+  //   }, [token])
 
   useEffect(() => {
 
@@ -125,7 +125,8 @@ export function App() {
     //   <Login />
     // </animated.div>
     <>
-    <Navigate logout = {logout} ref = {ref}/>
+
+    {token?<Navigate logout = {logout} ref = {ref}/> : <></>}
       <Routes>
         <Route path="/" exact element={<MoodPalette childState={childState} />} />
         <Route path="/login" exact element={<Login />} />
