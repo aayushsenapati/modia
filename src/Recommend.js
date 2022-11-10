@@ -93,11 +93,7 @@ function Recommend(props) {
       </div>
     ));
   };
-  const logout = () => {
-    window.sessionStorage.removeItem("token");
-    setToken(window.sessionStorage.getItem("token"));
-    navigate("/login", { replace: true })
-  };
+
 
   const releFunc = (object) => {
     return (
@@ -144,7 +140,6 @@ function Recommend(props) {
               </div>
             </CarouselProvider>
             {/* {renderSongs()} */}
-            <Button onClick={logout}>logout</Button>
           </Container>
         );
       }
