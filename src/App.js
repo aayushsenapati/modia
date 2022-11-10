@@ -21,6 +21,8 @@ import Navigate from "./Navigate";
 
 
 export function App() {
+
+  const ref = useRef();
   const [token, setToken] = useState(window.sessionStorage.getItem("token"));
   const [clicked, setClicked] = useState(false);
   const [valence, setValence] = useState();
@@ -28,6 +30,19 @@ export function App() {
   const [bgColor, setBgColor] = useState();
   const [color, setColor] = useState();
   let navigate = useNavigate();
+
+// useEffect(()=>{
+
+//   if(!token)
+//   {
+//     ref.current.style.display = "none";
+//   }
+//   if(token)
+//   {
+//     ref.current.style.display = "inline";
+//   }
+
+// }, [])
 
   useEffect(() => {
 
@@ -56,6 +71,12 @@ export function App() {
     }
 
     },[token,clicked]);
+
+    const logout = () => {
+      window.sessionStorage.removeItem("token");
+      setToken(window.sessionStorage.getItem("token"));
+      navigate("/login", { replace: true })
+    };
 
 
 /*   useEffect(() => {
@@ -104,7 +125,7 @@ export function App() {
     //   <Login />
     // </animated.div>
     <>
-    <Navigate/>
+    <Navigate logout = {logout} ref = {ref}/>
       <Routes>
         <Route path="/" exact element={<MoodPalette childState={childState} />} />
         <Route path="/login" exact element={<Login />} />

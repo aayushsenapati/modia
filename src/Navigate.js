@@ -1,29 +1,24 @@
 
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {Link} from "react-router-dom";
 
-const Navigate = () =>{
+const Navigate = (props) =>{
     return(
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
 <Navbar.Brand href="#home">
-        {/* Add modia logo here
-        
-        <Logo
-          alt=""
-          width="30"
-          height="30"
-          className="d-inline-block align-top"
-        /> */}
+        <img src = "mlogo.png"></img>
   Modia
 </Navbar.Brand>
 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 <Navbar.Collapse id="responsive-navbar-nav">
   <Nav className="mr-auto">
-    <Nav.Link href="#features">Select Mood</Nav.Link>
-    <Nav.Link href="#pricing">Playlist</Nav.Link>
+    <Nav.Link href = "/hello">Select Mood </Nav.Link>
+    <Nav.Link href="/login">Playlist</Nav.Link>
   </Nav>
   <Nav>
     <Nav.Link href="#deets">About</Nav.Link>
+    <Button onClick={props.logout}>logout</Button>
   </Nav>
 </Navbar.Collapse>
 </Navbar>
