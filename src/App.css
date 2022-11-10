@@ -24,3 +24,16 @@ img {
   font-size: 1.4rem;
   cursor: pointer;
 }
+
+#backnext {
+
+  padding: 0.5rem 1.5rem;
+  font-size : 1.2em; 
+  border-radius: 5rem; 
+  margin-top : 10px; 
+}
+
+#buttonContainer {
+  position : relative;
+
+}

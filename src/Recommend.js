@@ -1,3 +1,5 @@
+import "./App.css";
+
 import {
   useEffect,
   useState,
@@ -5,6 +7,7 @@ import {
   useLayoutEffect,
   useCallback,
 } from "react";
+import {Navbar, Nav} from "react-bootstrap";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +27,9 @@ function Recommend(props) {
   const Container = styled.div`
       background-color: #121212;
       color:white;
+      height : 100vh;
+      width : 50vw;
+      
     `;
 
   console.log("in Recommend", props.valence, props.energy);
@@ -131,12 +137,13 @@ function Recommend(props) {
               <Slider style={{ backgroundColor:"#121212", color: props.color, width: "300px", textAlign: "center", margin: "auto" }}>
                 {renderSongs()}
               </Slider>
-
-              <ButtonBack>Back</ButtonBack>
-              <ButtonNext>Next</ButtonNext>
+              <div id = "buttonContainer">
+              <ButtonBack id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor}}>Back</ButtonBack>
+              <ButtonNext id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor}}>Next</ButtonNext>
+              </div>
             </CarouselProvider>
             {/* {renderSongs()} */}
-            <button onClick={logout}>logout</button>
+            <button style = {{}} onClick={logout}>logout</button>
           </Container>
         );
       }
