@@ -123,7 +123,7 @@ function Recommend(props) {
         objectArray.sort((a, b) => releFunc(a) - releFunc(b));
         console.log("ObjectArray:",objectArray);
         return (
-          <Container>
+          <Container style ={{width:'100%',height:'auto'}}>
             <h1 style={{marginTop:"0px"}}>Valence:{props.valence}</h1>
             <h1>Energy:{props.energy}</h1>
             <h1>Color:{props.color}</h1>
@@ -137,7 +137,7 @@ function Recommend(props) {
               <Slider style={{ backgroundColor:"#121212", color: props.color, width: "300px", textAlign: "center", margin: "auto" }}>
                 {renderSongs()}
               </Slider>
-              <div id = "buttonContainer">
+              <div id = "buttonContainer" style={{position:'relative',top:'0px',left:'50%',alignItems:'center'}}>
               <ButtonBack id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor}}>Back</ButtonBack>
               <ButtonNext id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor}}>Next</ButtonNext>
               </div>
