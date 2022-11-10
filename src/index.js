@@ -8,11 +8,11 @@ import { BrowserRouter} from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<div id="appDiv">
+<span id="appDiv" style={{height:'100%', width:'100%'}}>
     <BrowserRouter>
         <App/>
     </BrowserRouter>
-</div>
+</span>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -7,7 +7,7 @@ import {
   useLayoutEffect,
   useCallback,
 } from "react";
-import {Navbar, Nav} from "react-bootstrap";
+import {Navbar, Nav, Button} from "react-bootstrap";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -123,7 +123,7 @@ function Recommend(props) {
         objectArray.sort((a, b) => releFunc(a) - releFunc(b));
         console.log("ObjectArray:",objectArray);
         return (
-          <Container style ={{width:'100%',height:'auto'}}>
+          <Container style ={{width:'100%',height:'100%'}}>
             <h1 style={{marginTop:"0px"}}>Valence:{props.valence}</h1>
             <h1>Energy:{props.energy}</h1>
             <h1>Color:{props.color}</h1>
@@ -137,13 +137,13 @@ function Recommend(props) {
               <Slider style={{ backgroundColor:"#121212", color: props.color, width: "300px", textAlign: "center", margin: "auto" }}>
                 {renderSongs()}
               </Slider>
-              <div id = "buttonContainer" style={{position:'relative',top:'0px',left:'50%',alignItems:'center'}}>
-              <ButtonBack id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor}}>Back</ButtonBack>
-              <ButtonNext id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor}}>Next</ButtonNext>
+              <div id = "buttonContainer" style={{display:'flex',justifyContent:'center'}}>
+              <ButtonBack id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor, display:'inline-block',margin:'10px'}}>Back</ButtonBack>
+              <ButtonNext id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor, display:'inline-block',margin:'10px'}}>Next</ButtonNext>
               </div>
             </CarouselProvider>
             {/* {renderSongs()} */}
-            <button style = {{}} onClick={logout}>logout</button>
+            <Button style = {{}} onClick={logout}>logout</Button>
           </Container>
         );
       }
