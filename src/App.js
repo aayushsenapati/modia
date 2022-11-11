@@ -22,13 +22,13 @@ import Navigate from "./Navigate";
 
 export function App() {
 
-  const ref = useRef();
   const [token, setToken] = useState(window.sessionStorage.getItem("token"));
   const [clicked, setClicked] = useState(false);
   const [valence, setValence] = useState();
   const [energy, setEnergy] = useState();
   const [bgColor, setBgColor] = useState();
   const [color, setColor] = useState();
+  const [term,setTerm]=useState("short_term")
   let navigate = useNavigate();
 
   // useEffect(()=>{
@@ -101,6 +101,10 @@ export function App() {
 
   };
 
+  const termState = (term) => {
+    setTerm(term)
+  };
+
   const s1 = useSpring({
     to: { opacity: 1 },
     from: { opacity: 0 },
@@ -126,11 +130,11 @@ export function App() {
     // </animated.div>
     <>
 
-    {token?<Navigate logout = {logout} ref = {ref}/> : <></>}
+    {token?<Navigate logout = {logout}/> : <></>}
       <Routes>
-        <Route path="/" exact element={<MoodPalette childState={childState} />} />
+        <Route path="/" exact element={<MoodPalette childState={childState} termState={termState} />} />
         <Route path="/login" exact element={<Login />} />
-        <Route path="/rec" exact element={<Recommend valence={valence} energy={energy} bgColor={bgColor} color={color}/>} />
+        <Route path="/rec" exact element={<Recommend valence={valence} energy={energy} bgColor={bgColor} color={color} term={term}/>} />
       </Routes>
     </>
   );

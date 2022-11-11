@@ -25,6 +25,7 @@ function MoodPalette(props) {
     const [offSetYT, setOffSetYT] = useState(0);
     const [offSetYB, setOffSetYB] = useState(0);
     
+    
   
     let styleMood = {
       width: "75vw",
@@ -117,54 +118,62 @@ function MoodPalette(props) {
     }, [setX, setY]);
   
     return (
-      <div id="moodPaletteDiv" style={styleMood} ref={ref}>
-        <h1 id="p1" style={{ margin: "0px", }}>
-          Modia
-        </h1>
-        <span
-          style={{
-            position: "absolute",
-            top: "10%",
-            fontSize: 1.5 + offSetYT + "em",
-          }}
-        >
-          Somber
-        </span>
-        <span
-          style={{
-            position: "absolute",
-            top: "85%",
-            fontSize: 1.5 + offSetYB + "em",
-          }}
-        >
-          Joyous
-        </span>
-        <span
-          style={{
-            position: "absolute",
-            left: "10%",
-            top: "50%",
-            fontSize: 1.5 + offSetXL + "em",
-          }}
-        >
-          Mellow
-        </span>
-        <span
-          style={{
-            position: "absolute",
-            left: "80%",
-            top: "50%",
-            textAlign:'left',
-            fontSize: 1.5 + offSetXR + "em",
-          }}
-        >
-          Upbeat
-        </span>
-        <h4 style={{ position: "absolute", left: "2%", top: "90%" }}>
-          {`x: ${x}; y: ${y};`}
-          {width};{height}
-        </h4>
-      </div>
+      <>
+        <label>Short term:</label>
+        <input id="value" type="radio" name="term" value="short_term" style={{display:"inline"}} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
+        <label>Medium term:</label>
+        <input id="value" type="radio" name="term" value="medium_term" style={{display:"inline"}} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
+        <label>Long term:</label>
+        <input id="value" type="radio" name="term" value="long_term" style={{display:"inline"}} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
+        <div id="moodPaletteDiv" style={styleMood} ref={ref}>
+          <h1 id="p1" style={{ margin: "0px", }}>
+            Modia
+          </h1>
+          <span
+            style={{
+              position: "absolute",
+              top: "10%",
+              fontSize: 1.5 + offSetYT + "em",
+            }}
+          >
+            Somber
+          </span>
+          <span
+            style={{
+              position: "absolute",
+              top: "85%",
+              fontSize: 1.5 + offSetYB + "em",
+            }}
+          >
+            Joyous
+          </span>
+          <span
+            style={{
+              position: "absolute",
+              left: "10%",
+              top: "50%",
+              fontSize: 1.5 + offSetXL + "em",
+            }}
+          >
+            Mellow
+          </span>
+          <span
+            style={{
+              position: "absolute",
+              left: "80%",
+              top: "50%",
+              textAlign:'left',
+              fontSize: 1.5 + offSetXR + "em",
+            }}
+          >
+            Upbeat
+          </span>
+          <h4 style={{ position: "absolute", left: "2%", top: "90%" }}>
+            {`x: ${x}; y: ${y};`}
+            {width};{height}
+          </h4>
+        </div>
+      </>
     );
   }
 

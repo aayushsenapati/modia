@@ -57,7 +57,7 @@ function Recommend(props) {
           "Content-Type": "application/json",
         },
         params: {
-          time_range: "short_term",
+          time_range: props.term,
           limit: 50,
         },
       }
@@ -119,6 +119,8 @@ function Recommend(props) {
         });
         objectArray.sort((a, b) => releFunc(a) - releFunc(b));
         console.log("ObjectArray:",objectArray);
+
+
         return (
           <Container>
             <h1 style={{marginTop:"0px"}}>Valence:{props.valence}</h1>
