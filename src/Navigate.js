@@ -1,4 +1,4 @@
-
+import logo from "./mlogo.png"
 import { Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Link} from "react-router-dom";
@@ -7,7 +7,7 @@ const Navigate = (props) =>{
     return(
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style = {{position : "fixed", top : "0%", zIndex : "1", width : "100vw"}}>
 <Navbar.Brand href="#home">
-        <img src = "mlogo.png"></img>
+<img src={logo} alt = "error" style = {{height : "1em", width : "1em", marginRight : "1em", marginLeft : "1em"}}/>
   Modia
 </Navbar.Brand>
 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
