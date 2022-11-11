@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 const Navigate = (props) =>{
     return(
-<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style = {{position : "sticky", top : "0%", zIndex : "1", width : "100vw"}}>
+<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky = "top">
 <Navbar.Brand href="#home">
 <img src={logo} alt = "error" style = {{height : "1em", width : "1em", marginRight : "1em", marginLeft : "1em"}}/>
   Modia
@@ -17,8 +17,9 @@ const Navigate = (props) =>{
     <Nav.Link href="/login">Playlist</Nav.Link>
   </Nav>
   <Nav>
-    <Nav.Link href="#deets">About</Nav.Link>
-    <Button style = {{position : "absolute", left : "90%"}} onClick={props.logout}>Logout</Button>
+    <Nav.Link href="#deets">About</Nav.Link></Nav>
+    <Nav className = 'ms-auto'>
+    <Button onClick={props.logout} style = {{width : "80px", marginRight : "30px"}}>Logout</Button>
   </Nav>
 </Navbar.Collapse>
 </Navbar>
