@@ -120,7 +120,7 @@ function MoodPalette(props) {
     return (
       <>
         <label>Short term:</label>
-        <input id="value" type="radio" name="term" value="short_term" style={{display:"inline"}} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
+        <input id="value" type="radio" name="term" value="short_term" style={{display:"inline"}} checked="true" onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
         <label>Medium term:</label>
         <input id="value" type="radio" name="term" value="medium_term" style={{display:"inline"}} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
         <label>Long term:</label>
