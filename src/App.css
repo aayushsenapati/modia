@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.modia-webpage{
+  font-family: 'Open Sans', sans-serif;
+}
+
+
 #moodPaletteParent,#moodPaletteDiv,#loginDiv{
   display: flex;
   justify-content: center;
@@ -37,3 +44,9 @@ img {
   position : relative;
 
 } */
+
+
+#left-grad{
+  position: absolute;
+  background-color: linear-gradient(to left, rgba(255,0,0,0), rgba(255,0,0,1));
+}

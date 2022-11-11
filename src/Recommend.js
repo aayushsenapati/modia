@@ -87,7 +87,7 @@ function Recommend(props) {
     return objectArray.map((song) => (
       <div key={song.track.id}>
         <Slide style={{ backgroundColor: props.bgColor, border: "5px solid",borderColor:props.color, borderRadius: "13px" }}>
-          <h1>{song.track.name}</h1>
+          <h3>{song.track.name}</h3>
           <img src={song.track.album.images[0].url} alt="image"></img>
         </Slide>
       </div>
@@ -123,25 +123,32 @@ function Recommend(props) {
 
         return (
           <Container>
-            <h1 style={{marginTop:"0px"}}>Valence:{props.valence}</h1>
-            <h1>Energy:{props.energy}</h1>
-            <h1>Color:{props.color}</h1>
-            <h1>BGColor:{props.bgColor}</h1>
+            <h4 style={{marginTop:"0px"}}>Valence:{props.valence}</h4>
+            <h4>Energy:{props.energy}</h4>
+            <h4>Color:{props.color}</h4>
+            <h4>BGColor:{props.bgColor}</h4>
             <CarouselProvider
               naturalSlideWidth={100}
               naturalSlideHeight={150}
-              totalSlides={objectArray.length}
+              totalSlides={objectArray.length+4}
+              visibleSlides={5}
             >
 
-              <Slider style={{ backgroundColor:"#121212", color: props.color, width: "300px", textAlign: "center", margin: "auto" }}>
+              <Slider style={{ backgroundColor:"#121212", color: props.color, width: "100vw",outline:'blue', textAlign: "center", margin: "auto" }}>
+                <Slide/>
+                <Slide/>
                 {renderSongs()}
+                <Slide/>
+                <Slide/>
+        
               </Slider>
+              <div id='left-grad'></div>
+              <div id='right-grad'></div>
               <div id = "buttonContainer" style={{display:'flex',justifyContent:'center'}}>
-              <ButtonBack id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor, display:'inline-block',margin:'10px'}}>Back</ButtonBack>
-              <ButtonNext id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor, display:'inline-block',margin:'10px'}}>Next</ButtonNext>
+              <ButtonBack id = "backnext" style = {{backgroundColor : props.bgColor, color : props.color, borderColor : props.color, display:'inline-block',margin:'10px'}}>Back</ButtonBack>
+              <ButtonNext id = "backnext" style = {{backgroundColor : props.bgColor, color : props.color, borderColor : props.color, display:'inline-block',margin:'10px'}}>Next</ButtonNext>
               </div>
             </CarouselProvider>
-            {/* {renderSongs()} */}
           </Container>
         );
       }

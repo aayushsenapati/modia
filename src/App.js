@@ -124,11 +124,8 @@ export function App() {
       );
     else return <Recommend valence={valence} energy={energy} />;
   } else {*/
-  return (
-    // <animated.div style={s1} id="loginParent">
-    //   <Login />
-    // </animated.div>
-    <>
+  return(
+    <div className="modia-webpage">
 
     {token?<Navigate logout = {logout}/> : <></>}
       <Routes>
@@ -136,7 +133,7 @@ export function App() {
         <Route path="/login" exact element={<Login />} />
         <Route path="/rec" exact element={<Recommend valence={valence} energy={energy} bgColor={bgColor} color={color} term={term}/>} />
       </Routes>
-    </>
+    </div>
   );
 
 
