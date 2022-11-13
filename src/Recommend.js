@@ -21,7 +21,10 @@ function Recommend(props) {
   const [userTop, setUserTop] = useState(false);
   const [analData, setAnalData] = useState(false);
   const [token, setToken] = useState(window.sessionStorage.getItem("token"));
+  const [playName,setPlayName]=useState()
+  const refInput=useRef()
   const idArray = [];
+  const tracks=[];
   let navigate = useNavigate();
 
   const Container = styled.div`
@@ -30,21 +33,23 @@ function Recommend(props) {
       height : 100vh;
       width : 100vw;
       overflow-y: auto;
+      display:flex;
+      flex-flow:row wrap;
+      justify-content: center;
       
     `;
 
   console.log("in Recommend", props.valence, props.energy);
 
-  //const token = window.localStorage.getItem("token");
 
-  const getUserInfo = async () => {
+  const getUserData = async () => {
     const { data } = await axios.get("https://api.spotify.com/v1/me", {
       headers: {
         Authorization: "Bearer " + token,
         "Content-Type": "application/json",
       },
     });
-    console.log(data);
+    console.log("user data:",data);
     setUserData(data);
   };
 
@@ -85,11 +90,18 @@ function Recommend(props) {
 
   const renderSongs = () => {
     return objectArray.map((song) => (
-      <div key={song.track.id}>
-        <Slide style={{ backgroundColor: props.bgColor, border: "5px solid",borderColor:props.color, borderRadius: "13px" }}>
+      <div key={song.track.id} >
+        <Slide onClick={()=>{tracks.includes(song)?tracks.pop():tracks.push(song);console.log(tracks)}} style={{backgroundColor: props.bgColor, border: "5px solid",borderColor:props.color, borderRadius: "13px"}}>
           <h1>{song.track.name}</h1>
           <img src={song.track.album.images[0].url} alt="image"></img>
         </Slide>
+      </div>
+    ));
+  };
+  const renderPlay = () => {
+    return tracks.map((song) => (
+      <div key={song.track.id} >
+          <h1>{song.track.name}</h1>
       </div>
     ));
   };
@@ -103,6 +115,9 @@ function Recommend(props) {
   };
 
   if (token) {
+    if(!userData){
+      getUserData()
+    }
     if (!userTop) {
       getUserTop();
     } else {
@@ -123,25 +138,37 @@ function Recommend(props) {
 
         return (
           <Container>
-            <h1 style={{marginTop:"0px"}}>Valence:{props.valence}</h1>
-            <h1>Energy:{props.energy}</h1>
-            <h1>Color:{props.color}</h1>
-            <h1>BGColor:{props.bgColor}</h1>
-            <CarouselProvider
-              naturalSlideWidth={100}
-              naturalSlideHeight={150}
-              totalSlides={objectArray.length}
-            >
+            <div style={{margin:"100px"}}>
+              <h6 style={{marginTop:"0px"}}>Valence:{props.valence}</h6>
+              <h6>Energy:{props.energy}</h6>
+              <h6>Color:{props.color}</h6>
+              <h6>BGColor:{props.bgColor}</h6>
+              <h6>Playlist Name:{playName}</h6>
+              {renderPlay()}
+            </div>
 
-              <Slider style={{ backgroundColor:"#121212", color: props.color, width: "300px", textAlign: "center", margin: "auto" }}>
-                {renderSongs()}
-              </Slider>
-              <div id = "buttonContainer" style={{display:'flex',justifyContent:'center'}}>
-              <ButtonBack id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor, display:'inline-block',margin:'10px'}}>Back</ButtonBack>
-              <ButtonNext id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor, display:'inline-block',margin:'10px'}}>Next</ButtonNext>
-              </div>
-            </CarouselProvider>
-            {/* {renderSongs()} */}
+            <div>
+              <CarouselProvider
+                naturalSlideWidth={100}
+                naturalSlideHeight={150}
+                totalSlides={objectArray.length}
+              >
+                <Slider style={{ backgroundColor:"#121212", color: props.color, width: "300px", textAlign: "center", margin: "auto" }}>
+                  {renderSongs()}
+                </Slider>
+                <div id = "buttonContainer" style={{display:'flex',justifyContent:'center'}}>
+                <ButtonBack id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor, display:'inline-block',margin:'10px'}}>Back</ButtonBack>
+                <ButtonNext id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor, display:'inline-block',margin:'10px'}}>Next</ButtonNext>
+                </div>
+              </CarouselProvider>
+            </div>
+            
+            <div style={{margin:"100px"}}>
+              <label htmlFor="playInput">Enter playlist name: </label>
+              <input id="playInput" type="text" ref={refInput}/>
+              <button onClick={()=>{setPlayName(refInput.current.value)}}>Upload Playlist</button>
+            </div>
+
           </Container>
         );
       }

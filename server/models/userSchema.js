@@ -1,6 +1,8 @@
 import mongoose from "mongoose"
 
-const userSchema = new mongoose.Schema(
+const {Schema}=mongoose
+
+/* const userSchema1 = Schema(
     {
         "bsonType": "object",
         "properties": {
@@ -11,18 +13,30 @@ const userSchema = new mongoose.Schema(
 
             "playlists": {
                 "bsonType": "array",
-                "uniqueItems": true,
                 "items": {
                     "bsonType": "object",
                     "properties": {
                         "playName": { "bsonType": "string" },
                         "tracks": { "bsonType": "array" },
-                        "date":{"bsonType":"date","default":Date.now}
+                        "date":{"bsonType":"date","default":"date.now"}
                     }
                 }
             }
         }
     }
+) */
+
+const userSchema =Schema(
+    {
+        _id:String,
+        playlists:[{
+            _id:false,
+            playName:String,
+            date:{ type: Date, default: Date.now },
+            tracks:[]
+        }]
+    }
 )
 
-export default mongoose.model('userSchema',userSchema)
+const user=mongoose.model('userSchema',userSchema,'userPlaylists')
+export default user
