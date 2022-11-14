@@ -145,8 +145,8 @@ function Recommend(props) {
               <div id='left-grad' style={{background:"linear-gradient(to right,rgba(0,0,0,1), rgba(255,255,255,0))",position:'absolute',width:'40vw',height:'100%',top:'0'}}></div>  {/*height wrt slider*/}
               <div id='right-grad'style={{background:"linear-gradient(to left,rgba(0,0,0,1), rgba(255,255,255,0))",position:'absolute',width:'40vw',height:'100%',top:'0',left:'60vw'}}></div>
               <div id = "buttonContainer" style={{display:'flex',justifyContent:'center'}}>
-              <ButtonBack id = "backnext" style = {{backgroundColor : props.bgColor, color : props.color, borderColor : props.color, display:'inline-block',margin:'10px'}}>Back</ButtonBack>
-              <ButtonNext id = "backnext" style = {{backgroundColor : props.bgColor, color : props.color, borderColor : props.color, display:'inline-block',margin:'10px'}}>Next</ButtonNext>
+              <ButtonBack id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.color, border : "5px", display:'inline-block',margin:'10px'}}>Back</ButtonBack>
+              <ButtonNext id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.color, display:'inline-block',margin:'10px'}}>Next</ButtonNext>
               </div>
             </CarouselProvider>
           </Container>
