@@ -86,7 +86,7 @@ function Recommend(props) {
   const renderSongs = () => {
     return objectArray.map((song) => (
       <div key={song.track.id}>
-        <Slide style={{ backgroundColor: props.bgColor, border: "5px solid",borderColor:props.color, borderRadius: "13px" }}>
+        <Slide style={{ backgroundColor: props.bgColor, border: "10px solid",borderColor:'#121212', borderRadius: "23px" }}>
           <h3>{song.track.name}</h3>
           <img src={song.track.album.images[0].url} alt="image"></img>
         </Slide>
