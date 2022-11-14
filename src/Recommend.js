@@ -164,11 +164,18 @@ function Recommend(props) {
               <CarouselProvider
                 naturalSlideWidth={100}
                 naturalSlideHeight={150}
-                totalSlides={objectArray.length}
+                totalSlides={objectArray.length+4}
+                visibleSlides={5}
               >
-                <Slider style={{ backgroundColor:"#121212", color: props.color, width: "300px", textAlign: "center", margin: "auto" }}>
+                <Slider style={{ backgroundColor:"#121212", color: props.color, width: "100vw", textAlign: "center", margin: "auto" }}>
+                  <Slide/>
+                  <Slide/>
                   {renderSongs()}
+                  <Slide/>
+                  <Slide/>
                 </Slider>
+                <div style={{background:"linear-gradient(to right,rgba(0,0,0,1), rgba(255,255,255,0))",position:'absolute',width:'40vw',height:'100%',top:'0'}}></div>
+                <div style={{background:"linear-gradient(to left,rgba(0,0,0,1), rgba(255,255,255,0))",position:'absolute',width:'40vw',height:'100%',top:'0',left:'60vw'}}></div>
                 <div id = "buttonContainer" style={{display:'flex',justifyContent:'center'}}>
                 <ButtonBack id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor, display:'inline-block',margin:'10px'}}>Back</ButtonBack>
                 <ButtonNext id = "backnext" style = {{backgroundColor : props.color, color : props.bgColor, borderColor : props.bgColor, display:'inline-block',margin:'10px'}}>Next</ButtonNext>
