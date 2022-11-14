@@ -180,6 +180,7 @@ function Recommend(props) {
               <label htmlFor="playInput">Enter playlist name: </label>
               <input id="playInput" type="text" ref={refInput}/>
               <button onClick={()=>{setPlayName(refInput.current.value);setTracks([])}}>Upload Playlist</button>
+              {renderPlay()}
             </div>
 
           </Container>
