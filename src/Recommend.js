@@ -167,7 +167,7 @@ function Recommend(props) {
                 totalSlides={objectArray.length+4}
                 visibleSlides={5}
               >
-                <Slider style={{ backgroundColor:"#121212", color: props.color, width: "100vw", textAlign: "center", margin: "auto" }}>
+                <Slider style={{ backgroundColor:"#121212", border : "5px solid", borderColor : props.color, color: props.color, width: "100vw", textAlign: "center", margin: "auto" }}>
                   <Slide/>
                   <Slide/>
                   {renderSongs()}
