@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.modia-webpage{
+  font-family: 'Open Sans', sans-serif;
+}
+
+
 #moodPaletteParent,#moodPaletteDiv,#loginDiv{
   display: flex;
   justify-content: center;
@@ -31,9 +38,5 @@ img {
   font-size : 1.2em; 
   border-radius: 5rem; 
   margin-top : 10px; 
+  z-index:2;
 }
-
-/* #buttonContainer {
-  position : relative;
-
-} */
