@@ -22,10 +22,12 @@ function Recommend(props) {
   const [analData, setAnalData] = useState(false);
   const [token, setToken] = useState(window.sessionStorage.getItem("token"));
   const [playName,setPlayName]=useState()
+  const [tracks,setTracks]=useState([])
   const refInput=useRef()
   const idArray = [];
-  const tracks=[];
   let navigate = useNavigate();
+
+
 
   const Container = styled.div`
       background-color: #121212;
@@ -42,6 +44,16 @@ function Recommend(props) {
   console.log("in Recommend", props.valence, props.energy);
 
 
+ /*  const createPlay = async () => {
+    const { data } = await axios.post("https://api.spotify.com/v1/me", {
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("user data:",data);
+    setUserData(data);
+  }; */
   const getUserData = async () => {
     const { data } = await axios.get("https://api.spotify.com/v1/me", {
       headers: {
@@ -89,9 +101,10 @@ function Recommend(props) {
   };
 
   const renderSongs = () => {
+    const tempTracks=tracks
     return objectArray.map((song) => (
       <div key={song.track.id} >
-        <Slide onClick={()=>{tracks.includes(song)?tracks.pop():tracks.push(song);console.log(tracks)}} style={{backgroundColor: props.bgColor, border: "5px solid",borderColor:props.color, borderRadius: "13px"}}>
+        <Slide onClick={()=>{tempTracks.includes(song)?tempTracks.splice(tempTracks.indexOf(song), 1):tempTracks.push(song);setTracks(tempTracks);console.log(tracks)}} style={{backgroundColor: props.bgColor, border: "5px solid",borderColor:props.color, borderRadius: "13px"}}>
           <h1>{song.track.name}</h1>
           <img src={song.track.album.images[0].url} alt="image"></img>
         </Slide>
@@ -101,7 +114,7 @@ function Recommend(props) {
   const renderPlay = () => {
     return tracks.map((song) => (
       <div key={song.track.id} >
-          <h1>{song.track.name}</h1>
+          <h6>{song.track.name}</h6>
       </div>
     ));
   };
@@ -144,7 +157,7 @@ function Recommend(props) {
               <h6>Color:{props.color}</h6>
               <h6>BGColor:{props.bgColor}</h6>
               <h6>Playlist Name:{playName}</h6>
-              {renderPlay()}
+              
             </div>
 
             <div>
@@ -166,7 +179,7 @@ function Recommend(props) {
             <div style={{margin:"100px"}}>
               <label htmlFor="playInput">Enter playlist name: </label>
               <input id="playInput" type="text" ref={refInput}/>
-              <button onClick={()=>{setPlayName(refInput.current.value)}}>Upload Playlist</button>
+              <button onClick={()=>{setPlayName(refInput.current.value);setTracks([])}}>Upload Playlist</button>
             </div>
 
           </Container>
