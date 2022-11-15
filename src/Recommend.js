@@ -15,20 +15,29 @@ import React from 'react';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
-
+function PlayLists(props){
+  const [tracks, setTracks] = useState([])
+  const setTr=()=>{
+    setTracks(props.tracks)
+  }
+  return <div><h1>Playlist</h1>{tracks.map((song) => (
+    <div key={song.track.id} >
+      <h6>{song.track.name}</h6>
+    </div>
+  ))}
+    </div>
+}
 function Recommend(props) {
   const [userData, setUserData] = useState(false);
   const [userTop, setUserTop] = useState(false);
   const [analData, setAnalData] = useState(false);
   const [token, setToken] = useState(window.sessionStorage.getItem("token"));
   const [playName, setPlayName] = useState()
-  const [tracks, setTracks] = useState([])
-  const refInput = useRef()
+  const refInput = useRef(null)
+  const refPlaylist=useRef(null)
   const idArray = [];
+  const tempTracks=[]
   let navigate = useNavigate();
-
-  
-
 
 
   const Container = styled.div`
@@ -103,23 +112,24 @@ function Recommend(props) {
   };
 
   const renderSongs = () => {
-    const tempTracks = Array.from(tracks)
+    //const tempTracks = Array.from(tracks)
     return objectArray.map((song) => (
       <div key={song.track.id} >
-        <Slide onClick={() => { tempTracks.includes(song) ? tempTracks.splice(tempTracks.indexOf(song), 1) : tempTracks.push(song); setTracks(tempTracks); console.log(tracks) }} style={{ backgroundColor: props.bgColor, border: "10px solid", borderColor: '#121212', borderRadius: "23px" }}>
+        <Slide onClick={() => { tempTracks.includes(song) ? tempTracks.splice(tempTracks.indexOf(song), 1) : tempTracks.push(song);
+        console.log(tempTracks);refPlaylist.current.setTr() }} style={{ backgroundColor: props.bgColor, border: "10px solid", borderColor: '#121212', borderRadius: "23px" }}>
           <h3>{song.track.name}</h3>
           <img src={song.track.album.images[0].url} alt="image"></img>
         </Slide>
       </div>
     ));
   };
-  const renderPlay = () => {
+  /* const renderPlay = () => {
     return tracks.map((song) => (
       <div key={song.track.id} >
         <h6>{song.track.name}</h6>
       </div>
     ));
-  };
+  }; */
 
 
   const releFunc = (object) => {
@@ -188,9 +198,9 @@ function Recommend(props) {
             <div style={{ margin: "100px" }}>
               <label htmlFor="playInput">Enter playlist name: </label>
               <input id="playInput" type="text" ref={refInput} />
-              <button onClick={() => { setPlayName(refInput.current.value); setTracks([]) }}>Upload Playlist</button>
-              <playLists tracks={tracks}/>
-              {renderPlay()}
+              <button onClick={() => { setPlayName(refInput.current.value); tempTracks=[] }}>Upload Playlist</button>
+              <PlayLists tracks={tempTracks} refPlaylist={refPlaylist}/>
+              
             </div>
 
           </Container>
