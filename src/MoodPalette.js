@@ -100,8 +100,8 @@ function MoodPalette(props) {
       */
       const updatec = (e) => {
         const offsets = ref.current.getBoundingClientRect();
-        const valence = 1-((1 / ref.current.offsetWidth) * (e.x - offsets.left)); //div coords
-        const energy = (1 / ref.current.offsetHeight) * (e.y - offsets.top); //div coords
+        const energy = ((1 / ref.current.offsetWidth) * (e.x - offsets.left)); //div coords
+        const valence = (1 / ref.current.offsetHeight) * (e.y - offsets.top); //div coords
         console.log(valence, energy);
         props.childState(true, valence, energy,ref.current.style.backgroundColor,ref.current.style.color);
         console.log(ref.current.style.backgroundColor)

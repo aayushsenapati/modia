@@ -27,6 +27,8 @@ function PlayLists(props){
   ))}
     </div>
 }
+
+
 function Recommend(props) {
   const [userData, setUserData] = useState(false);
   const [userTop, setUserTop] = useState(false);
@@ -35,9 +37,11 @@ function Recommend(props) {
   const [playName, setPlayName] = useState()
   const refInput = useRef(null)
   const refPlaylist=useRef(null)
+  var tempTracks=[]
   const idArray = [];
-  const tempTracks=[]
+  useEffect(() => {console.log("Reference is this\n",refPlaylist.current)},[]);
   let navigate = useNavigate();
+
 
 
   const Container = styled.div`
@@ -54,17 +58,6 @@ function Recommend(props) {
 
   console.log("in Recommend", props.valence, props.energy);
 
-
-  /*  const createPlay = async () => {
-     const { data } = await axios.post("https://api.spotify.com/v1/me", {
-       headers: {
-         Authorization: "Bearer " + token,
-         "Content-Type": "application/json",
-       },
-     });
-     console.log("user data:",data);
-     setUserData(data);
-   }; */
   const getUserData = async () => {
     const { data } = await axios.get("https://api.spotify.com/v1/me", {
       headers: {
@@ -111,26 +104,23 @@ function Recommend(props) {
     setAnalData(data);
   };
 
+  const seeRef = () =>{
+    console.log("in seeRef fn\n",refPlaylist.current)
+  }
+
   const renderSongs = () => {
-    //const tempTracks = Array.from(tracks)
+    tempTracks = Array.from(tempTracks)
     return objectArray.map((song) => (
       <div key={song.track.id} >
-        <Slide onClick={() => { tempTracks.includes(song) ? tempTracks.splice(tempTracks.indexOf(song), 1) : tempTracks.push(song);
+        <Slide onClick={() => {seeRef(); tempTracks.includes(song) ? tempTracks.splice(tempTracks.indexOf(song), 1) : tempTracks.push(song);
         console.log(tempTracks);refPlaylist.current.setTr() }} style={{ backgroundColor: props.bgColor, border: "10px solid", borderColor: '#121212', borderRadius: "23px" }}>
-          <h3>{song.track.name}</h3>
-          <img src={song.track.album.images[0].url} alt="image"></img>
+          <img src={song.track.album.images[0].url} alt="image" style={{width:'90%',height:'auto',paddingTop:'10px'}}></img>
+          <h4   >{song.track.name}</h4>
+          <h5 style={{position:'absolute',marginLeft:'10px'}}>{song.track.artists[0].name}</h5>
         </Slide>
       </div>
     ));
   };
-  /* const renderPlay = () => {
-    return tracks.map((song) => (
-      <div key={song.track.id} >
-        <h6>{song.track.name}</h6>
-      </div>
-    ));
-  }; */
-
 
   const releFunc = (object) => {
     return (
@@ -160,6 +150,8 @@ function Recommend(props) {
         objectArray.sort((a, b) => releFunc(a) - releFunc(b));
         console.log("ObjectArray:", objectArray);
 
+        
+
 
         return (
           <Container>
@@ -186,8 +178,8 @@ function Recommend(props) {
                   <Slide />
                   <Slide />
                 </Slider>
-                <div style={{ background: "linear-gradient(to right,rgba(0,0,0,1), rgba(255,255,255,0))", position: 'absolute', width: '40vw', height: '100%', top: '0' }}></div>
-                <div style={{ background: "linear-gradient(to left,rgba(0,0,0,1), rgba(255,255,255,0))", position: 'absolute', width: '40vw', height: '100%', top: '0', left: '60vw' }}></div>
+                <div style={{ background: "linear-gradient(to right,rgba(18,18,18,1) 0%,rgba(18,18,18,1) 30%, rgba(18,18,18,0.8)60%, rgba(18,18,18,0.1) 95%, rgba(18,18,18,0) 100%)", position: 'absolute', width: '40vw', height: '100%', top: '0' }}></div>
+                <div style={{ background: "linear-gradient(to left,rgba(18,18,18,1) 0%,rgba(18,18,18,1) 30%, rgba(18,18,18,0.8)60%, rgba(18,18,18,0.1) 95%, rgba(18,18,18,0) 100%)", position: 'absolute', width: '40vw', height: '100%', top: '0', left: '60vw' }}></div>
                 <div id="buttonContainer" style={{ display: 'flex', justifyContent: 'center' }}>
                   <ButtonBack id="backnext" style={{ backgroundColor: props.color, color: props.bgColor, borderColor: props.bgColor, display: 'inline-block', margin: '10px' }}>Back</ButtonBack>
                   <ButtonNext id="backnext" style={{ backgroundColor: props.color, color: props.bgColor, borderColor: props.bgColor, display: 'inline-block', margin: '10px' }}>Next</ButtonNext>
@@ -196,10 +188,10 @@ function Recommend(props) {
             </div>
 
             <div style={{ margin: "100px" }}>
+              <PlayLists tracks={tempTracks} refPlaylist={refPlaylist}/>
               <label htmlFor="playInput">Enter playlist name: </label>
               <input id="playInput" type="text" ref={refInput} />
               <button onClick={() => { setPlayName(refInput.current.value); tempTracks=[] }}>Upload Playlist</button>
-              <PlayLists tracks={tempTracks} refPlaylist={refPlaylist}/>
               
             </div>
 
