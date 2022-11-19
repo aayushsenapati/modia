@@ -2,29 +2,6 @@ import mongoose from "mongoose"
 
 const {Schema}=mongoose
 
-/* const userSchema1 = Schema(
-    {
-        "bsonType": "object",
-        "properties": {
-
-            "_id": {
-                "bsonType": "objectId"
-            },
-
-            "playlists": {
-                "bsonType": "array",
-                "items": {
-                    "bsonType": "object",
-                    "properties": {
-                        "playName": { "bsonType": "string" },
-                        "tracks": { "bsonType": "array" },
-                        "date":{"bsonType":"date","default":"date.now"}
-                    }
-                }
-            }
-        }
-    }
-) */
 
 const userSchema =Schema(
     {

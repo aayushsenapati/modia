@@ -4,7 +4,6 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-
 #moodPaletteParent,#moodPaletteDiv,#loginDiv{
   display: flex;
   justify-content: center;

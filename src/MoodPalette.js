@@ -93,11 +93,6 @@ function MoodPalette(props) {
             : 0
         );
       };
-      /*     if(!width && !height){
-        setWidth(ref.current.offsetWidth);
-        setHeight(ref.current.offsetHeight); 
-      }
-      */
       const updatec = (e) => {
         const offsets = ref.current.getBoundingClientRect();
         const energy = ((1 / ref.current.offsetWidth) * (e.x - offsets.left)); //div coords
@@ -106,15 +101,13 @@ function MoodPalette(props) {
         props.childState(true, valence, energy,ref.current.style.backgroundColor,ref.current.style.color);
         console.log(ref.current.style.backgroundColor)
         console.log(ref.current.style.color)
-        // navigate('/rec', {replace: true})
       };
+
+
       ref.current.addEventListener("mousemove", update);
       ref.current.addEventListener("touchmove", update);
       ref.current.addEventListener("click", updatec);
-      /*     return () => {
-        ref.current.removeEventListener("mousemove", update);
-        ref.current.removeEventListener("touchmove", update);
-      }; */
+      
     }, [setX, setY]);
   
     return (
