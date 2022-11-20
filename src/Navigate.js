@@ -14,7 +14,7 @@ const Navigate = (props) =>{
 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 <Navbar.Collapse id="responsive-navbar-nav">
   <Nav className="mr-auto">
-    <Nav.Link href = "/">Select Mood </Nav.Link>
+    <Nav.Link href="/">Select Mood </Nav.Link>
     <Nav.Link onClick={()=>navigate("/playlist")}>Playlist</Nav.Link>
   </Nav>
   <Nav>
