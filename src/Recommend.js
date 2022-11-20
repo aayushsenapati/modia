@@ -4,14 +4,13 @@ import {
   useState,
   useRef,
   memo,
-  useLayoutEffect,
-  useEffect,
 } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import React from 'react';  
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 
 const Container = styled.div`
@@ -81,16 +80,15 @@ function SlideProvide(props){
 const MemoSlideProvide=memo(SlideProvide,propsAreEqual)
 
 function Recommend(props) {
-  const [userData, setUserData] = useState(false);
   const [userTop, setUserTop] = useState(false);
   const [analData, setAnalData] = useState(false);
   const [token, setToken] = useState(window.sessionStorage.getItem("token"));
   const [playName, setPlayName] = useState()
-  const [clicked, setClicked] = useState()
   const refInput = useRef(null)
-  const clickRef=useRef()
   const [playArr,setPlayArr]=useState([])
+  const [staged,setStaged]=useState(false)
   const idArray = [];
+  let navigate = useNavigate();
   
 
 
@@ -107,28 +105,17 @@ function Recommend(props) {
 
   function dispPlay(){
     return(
-    <div>
-      <h1>Playlist</h1>
+    <>
       {playArr.map((song) => 
-      (<div key={song.track.id}>
-        <h6>{song.track.name}</h6>
-      </div>))}
-    </div>)
+      (
+        <h6 key={song.track.id}>{song.track.name}</h6>
+      ))}
+    </>)
   }
 
 
   console.log("in Recommend", props.valence, props.energy);
 
-  const getUserData = async () => {
-    const { data } = await axios.get("https://api.spotify.com/v1/me", {
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-Type": "application/json",
-      },
-    });
-    console.log("user data:", data);
-    setUserData(data);
-  };
 
   const getUserTop = async () => {
     const { data } = await axios.get(
@@ -171,7 +158,7 @@ function Recommend(props) {
       headers: {
         "Content-Type": "application/json",
       },
-      _id:userData.id,
+      _id:props.ud.id,
       playName:playName,
       tracks:playArr
     }
@@ -191,9 +178,6 @@ function Recommend(props) {
   };
 
   if (token) {
-    if (!userData) {
-      getUserData()
-    }
     if (!userTop) {
       getUserTop();
     } else {
@@ -224,7 +208,6 @@ function Recommend(props) {
                 <h6>Energy:{props.energy}</h6>
                 <h6>Color:{props.color}</h6>
                 <h6>BGColor:{props.bgColor}</h6>
-                <h6>Playlist Name:{playName}</h6>
               </div>
 
               <div>
@@ -234,7 +217,10 @@ function Recommend(props) {
               <div style={{ margin: "100px" }}>
                 <label htmlFor="playInput">Enter playlist name: </label>
                 <input id="playInput" type="text" ref={refInput} />
-                <button onClick={() => { setPlayName(refInput.current.value);dispPlay();uploadPlay()}}>View Playlist</button>
+                <button onClick={() => { setPlayName(refInput.current.value);setStaged(true)}}>Stage Playlist</button>
+                <h3>{playName}</h3>
+                {staged?dispPlay():<></>}
+                {staged?<button onClick={() => {uploadPlay();navigate("/playlist", { replace: true })}}>Upload Playlist</button>:<></>}
                 
               </div>
 

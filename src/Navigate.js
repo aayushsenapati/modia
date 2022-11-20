@@ -1,9 +1,10 @@
 import logo from "./mlogo.png"
 import { Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Link} from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 const Navigate = (props) =>{
+  let navigate = useNavigate();
     return(
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky = "top">
 <Navbar.Brand href="#home">
@@ -13,8 +14,8 @@ const Navigate = (props) =>{
 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 <Navbar.Collapse id="responsive-navbar-nav">
   <Nav className="mr-auto">
-    <Nav.Link href = "/hello">Select Mood </Nav.Link>
-    <Nav.Link href="/login">Playlist</Nav.Link>
+    <Nav.Link href = "/">Select Mood </Nav.Link>
+    <Nav.Link onClick={()=>navigate("/playlist")}>Playlist</Nav.Link>
   </Nav>
   <Nav>
     <Nav.Link href="#deets">About</Nav.Link></Nav>

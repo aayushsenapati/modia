@@ -10,5 +10,11 @@ userRoute.post('/storePlay',async (req,res)=>{
     res.send("Store Successs")
 })
 
+userRoute.post('/getPlay',async (req,res)=>{
+    //const userDB=user(req.body)
+    const data=await user.find({_id:req.body._id})
+    res.send(data)
+})
+
 export default userRoute
 
