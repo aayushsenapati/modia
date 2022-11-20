@@ -1,12 +1,11 @@
 
 import "./App.css";
+import styled from "styled-components";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
 const PlayBox = styled.div`
     display : inline-block;
-    background-color : ${props.bgColor};
-    color-${props.color}
     border-radius : 20px;
     padding : 5px;
     margin : 
@@ -40,7 +39,7 @@ function Playlist(props) {
 
     return (
         <>
-            {data?data[0].playlists.map(playlist=><h5>{playlist.playName}</h5>):"N/A"}
+            {data?data[0].playlists.map(playlist=><PlayBox>{playlist.playName}</PlayBox>):"N/A"}
         </>
     );
 }
