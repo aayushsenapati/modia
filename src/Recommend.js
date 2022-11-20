@@ -45,7 +45,7 @@ function SlideProvide(props){
 
         style={{ backgroundColor: props.bgColor, border: "10px solid", borderColor: '#121212', borderRadius: "23px" }}>
 
-          <img src={song.track.album.images[0].url} alt="image" style={{width:'90%',height:'auto',paddingTop:'10px'}}></img>
+          <img src={song.track.album.images[0].url} alt="image" style={{width:'90%',height:'auto',marginTop:'1vw',borderRadius:'1vw'}}></img>
           <h4   >{song.track.name}</h4>
           <h5 style={{position:'absolute',marginLeft:'10px'}}>{song.track.artists[0].name}</h5>
 
