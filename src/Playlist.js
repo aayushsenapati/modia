@@ -16,7 +16,7 @@ function Playlist(props) {
                 _id: props.ud.id,
             });
             console.log(data);  
-            //setData(data)
+            //  setData(data)
             
         }
         getPlay()
