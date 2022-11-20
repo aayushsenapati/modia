@@ -8,7 +8,12 @@ const PlayBox = styled.div`
     display : inline-block;
     border-radius : 20px;
     padding : 5px;
-    margin : 
+    margin : 5px;
+    background-color : black;
+    color : white;
+    width : 20vw;
+    height : 20vh;
+    font-size : 3vh;
 
     `;
 
@@ -38,10 +43,24 @@ function Playlist(props) {
     })
 
     return (
-        <>
-            {data?data[0].playlists.map(playlist=><PlayBox>{playlist.playName}</PlayBox>):"N/A"}
-        </>
+        data?data[0].playlists.map((playlist) => (
+            <PlayBox style = {{background : props.bgColor, color : props.color }}onClick = {()=>{
+                console.log("eeeeeee");
+                return(
+                    <ul>
+                    {playlist.tracks.map((song)=>(
+                        <li>{song.track.name}</li>
+                    ))}
+                </ul>
+                )
+            }}>
+            <h6 key={playlist.playName}>{playlist.playName}</h6>
+           
+            </PlayBox>
+        )):<h6>No Playlist</h6>
     );
 }
+
+
 
 export default Playlist;
