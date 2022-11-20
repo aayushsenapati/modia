@@ -28,9 +28,17 @@ function Playlist(props) {
     })
 
     return (
-        <>
-            {data?data[0].playlists.map(playlist=><h5>{playlist.playName}</h5>):"N/A"}
-        </>
+        
+        data?data[0].playlists.map((playlist) => (
+                <>
+                <h6 key={playlist.playName}>{playlist.playName}</h6>
+                <ul>
+                    {playlist.tracks.map((song)=>(
+                        <li>{song.track.name}</li>
+                    ))}
+                </ul>
+                </>
+            )):<h6>No Playlist</h6>
     );
 }
 
