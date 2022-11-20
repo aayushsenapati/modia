@@ -110,7 +110,7 @@ export function App() {
         <Route path="/" exact element={<MoodPalette childState={childState} termState={termState} />} />
         <Route path="/login" exact element={<Login />} />
         <Route path="/rec" exact element={<Recommend valence={valence} energy={energy} bgColor={bgColor} color={color} term={term} ud={ud}/>}/>
-        <Route path="/playlist" exact element={<Playlist ud={ud} />} />
+        <Route path="/playlist" exact element={<Playlist bgColor={bgColor} color={color} ud={ud} />} />
       </Routes>
     </div>
   );
