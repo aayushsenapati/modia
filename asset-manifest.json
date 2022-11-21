@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/modian/static/css/main.71092cdc.css",
+    "main.js": "/modian/static/js/main.12be6046.js",
+    "static/js/787.1ec88e08.chunk.js": "/modian/static/js/787.1ec88e08.chunk.js",
+    "static/media/modia.png": "/modian/static/media/modia.e710d7329c0de0aef56a.png",
+    "static/media/cursor.svg": "/modian/static/media/cursor.89f03c7e355f2d781247.svg",
+    "index.html": "/modian/index.html",
+    "main.71092cdc.css.map": "/modian/static/css/main.71092cdc.css.map",
+    "main.12be6046.js.map": "/modian/static/js/main.12be6046.js.map",
+    "787.1ec88e08.chunk.js.map": "/modian/static/js/787.1ec88e08.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.71092cdc.css",
+    "static/js/main.12be6046.js"
+  ]
+}
