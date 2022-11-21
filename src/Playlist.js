@@ -34,7 +34,7 @@ function Playlist(props) {
                 <h6 key={playlist.playName}>{playlist.playName}</h6>
                 <ul>
                     {playlist.tracks.map((song)=>(
-                        <li>{song.track.name}</li>
+                        <li key={song.track.name}>{song.track.name}</li>
                     ))}
                 </ul>
                 </>
