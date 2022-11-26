@@ -38,6 +38,7 @@ function SlideProvide(props){
       <div key={song.track.id} >
         <Slide
         onClick={(e) => {
+          window.addEventListener('mousemove',()=>{return;})
           tempTracks.includes(song) ? tempTracks.splice(tempTracks.indexOf(song), 1) : tempTracks.push(song)
           e.currentTarget.style.transition="background-color 0.5s ease,color 0.5s ease";
           if(e.currentTarget.style.backgroundColor==props.bgColor)
@@ -174,6 +175,7 @@ function Recommend(props) {
     }
     )
     console.log(data)
+    navigate("/playlist", { replace: true })
   }
   
 
@@ -230,7 +232,7 @@ function Recommend(props) {
                 <button onClick={() => { setPlayName(refInput.current.value);setStaged(true)}}>Stage Playlist</button>
                 <h3>{playName}</h3>
                 {staged?dispPlay():<></>}
-                {staged?<button onClick={() => {uploadPlay();navigate("/playlist", { replace: true })}}>Upload Playlist</button>:<></>}
+                {staged?<button onClick={() => {playArr.length ? uploadPlay() : window.alert("Select some songs!");}}>Upload Playlist</button>:<></>}
                 
               </div>
 
