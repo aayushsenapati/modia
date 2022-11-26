@@ -174,6 +174,7 @@ function Recommend(props) {
     }
     )
     console.log(data)
+    navigate("/playlist", { replace: true })
   }
   
 
@@ -230,7 +231,7 @@ function Recommend(props) {
                 <button onClick={() => { setPlayName(refInput.current.value);setStaged(true)}}>Stage Playlist</button>
                 <h3>{playName}</h3>
                 {staged?dispPlay():<></>}
-                {staged?<button onClick={() => {uploadPlay();navigate("/playlist", { replace: true })}}>Upload Playlist</button>:<></>}
+                {staged?<button onClick={() => {playArr.length ? uploadPlay() : window.alert("Select some songs!");}}>Upload Playlist</button>:<></>}
                 
               </div>
 
