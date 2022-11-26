@@ -5,14 +5,15 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const PlayBox = styled.div`
-    display : inline-block;
+    display : flex;
+    flex-wrap: wrap;
+    flex-direction:column;
     border-radius : 20px;
     padding : 5px;
     margin : 5px;
     background-color : black;
     color : white;
     width : 20vw;
-    height : 20vh;
     font-size : 3vh;
 
     `;
@@ -20,44 +21,43 @@ const PlayBox = styled.div`
 
 function Playlist(props) {
     const [data, setData] = useState()
-    useEffect(() =>{
+    useEffect(() => {
         let isMounted = true
-    
 
 
-    const getPlay = async () => {
-        const { data } = await axios.post("http://127.0.0.1:5000/api/getPlay", {
-            headers: {
-                "Content-Type": "application/json",
-            },
-            _id: props.ud.id,
-        });
-        console.log(data[0]);
-        if(isMounted)
-            setData(data)
 
-    }
+        const getPlay = async () => {
+            const { data } = await axios.post("http://127.0.0.1:5000/api/getPlay", {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                _id: props.ud.id,
+            });
+            console.log(data[0]);
+            if (isMounted)
+                setData(data)
 
-    if (!data)
-        getPlay()
+        }
+
+        if (!data && props.ud.id)
+            getPlay()
     })
 
     return (
-        data?data[0].playlists.map((playlist) => (
-            <PlayBox style = {{background : props.bgColor, color : props.color }}onClick = {()=>{
-                console.log("eeeeeee");
-                return(
-                    <ul>
-                    {playlist.tracks.map((song)=>(
-                        <li>{song.track.name}</li>
-                    ))}
-                </ul>
-                )
-            }}>
-            <h6 key={playlist.playName}>{playlist.playName}</h6>
-           
+
+
+        data ? data[0].playlists.map((playlist) => (
+            <PlayBox key={playlist.playName+" playBox"}>
+                <div key={playlist.playName} style={{transition:"all 0.5s ease"}} onClick={(e)=>{e.currentTarget.lastChild.style.display=="none"?e.currentTarget.lastChild.style.display="inline":e.currentTarget.lastChild.style.display="none"}}>
+                    <h6 key={playlist.playName+" heading"}>{playlist.playName}</h6>
+                    <ul key={playlist.playName+" ul"} style={{display:"none"}}>
+                        {playlist.tracks.map((song) => (
+                            <li key={song.track.name}>{song.track.name}</li>
+                        ))}
+                    </ul>
+                </div>
             </PlayBox>
-        )):<h6>No Playlist</h6>
+        )) : <h6>No Playlist</h6>
     );
 }
 

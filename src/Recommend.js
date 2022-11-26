@@ -39,7 +39,17 @@ function SlideProvide(props){
         <Slide
         onClick={(e) => {
           tempTracks.includes(song) ? tempTracks.splice(tempTracks.indexOf(song), 1) : tempTracks.push(song)
-          e.currentTarget.style.transition="background-color 0.5s ease,color 0.5s ease";e.currentTarget.style.backgroundColor=props.color;e.currentTarget.style.color=props.bgColor
+          e.currentTarget.style.transition="background-color 0.5s ease,color 0.5s ease";
+          if(e.currentTarget.style.backgroundColor==props.bgColor)
+          {
+            e.currentTarget.style.backgroundColor=props.color
+            e.currentTarget.style.color=props.bgColor
+          }
+          else
+          {
+            e.currentTarget.style.backgroundColor=props.bgColor
+            e.currentTarget.style.color=props.color
+          }
           props.slidePropFunc(tempTracks);console.log(tempTracks)
           }} 
 
