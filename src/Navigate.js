@@ -20,6 +20,7 @@ const Navigate = (props) =>{
   <Nav>
     <Nav.Link href="#deets">About</Nav.Link></Nav>
     <Nav className = 'ms-auto'>
+    <img src={props.ud.images[0].url} alt = "error" style = {{height : "5vh", width : "3vw", marginRight : "1em", marginLeft : "1em",borderRadius:"100px"}}/>
     <Button onClick={props.logout} style = {{width : "80px", marginRight : "30px"}}>Logout</Button>
   </Nav>
 </Navbar.Collapse>
