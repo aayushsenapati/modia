@@ -61,6 +61,7 @@ export function App() {
     }
 
     if (token) {
+      setTimeout(logout,3600000)
       if(!ud){
         getUserData()
       }
@@ -79,6 +80,8 @@ export function App() {
       setToken(window.sessionStorage.getItem("token"));
       navigate("/login", { replace: true })
     };
+
+    
 
 
   const childState = (clicked, valence, energy,bgColor,color) => {
@@ -105,7 +108,7 @@ export function App() {
   return(
     <div className="modia-webpage">
 
-    {token?<Navigate logout = {logout}/> : <></>}
+    {token&&ud?<Navigate logout = {logout} ud={ud}/> : <></>}
       <Routes>
         <Route path="/" exact element={<MoodPalette childState={childState} termState={termState} />} />
         <Route path="/login" exact element={<Login />} />
