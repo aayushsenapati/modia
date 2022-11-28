@@ -19,17 +19,7 @@ import backArrow from "./back-button.svg"
 import nextArrow from "./next-button.svg"
 
 
-const Container = styled.div`
-      background-color: #202020;
-      color:white;
-      height : 100vh;
-      width : 100vw;
-      overflow-y: auto;
-      display:flex;
-      flex-flow:row wrap;
-      justify-content: center;
-      
-    `;
+
 function propsAreEqual(prev, next) {
   console.log("rerender?")
   return (JSON.stringify(prev.objectArray) === JSON.stringify(next.objectArray) && prev.color === next.color && prev.bgColor === next.bgColor)
@@ -101,6 +91,7 @@ function Recommend(props) {
   const refInput = useRef(null)
   const [playArr, setPlayArr] = useState([])
   const [staged, setStaged] = useState(false)
+  const [reRender,setReRender]=useState(false)
   const idArray = [];
   let navigate = useNavigate();
 
@@ -217,7 +208,7 @@ function Recommend(props) {
 
 
         return (
-          <Container>
+          <>
             <div style={{ margin: "100px" }}>
               <h6 style={{ marginTop: "0px" }}>Valence:{props.valence}</h6>
               <h6>Energy:{props.energy}</h6>
@@ -232,7 +223,7 @@ function Recommend(props) {
               <div style={{ margin: "100px" }}>
                 <label htmlFor="playInput">Enter playlist name: </label>
                 <input id="playInput" type="text" ref={refInput} />
-                <Button variant="outline-light" style = {{margin : "5px"}}onClick={() => { setPlayName(refInput.current.value);setStaged(true)}}>Stage Playlist</Button>{' '}
+                <Button variant="outline-light" style = {{margin : "5px"}}onClick={() => { setPlayName(refInput.current.value);setStaged(true);reRender?setReRender(false):setReRender(true)}}>Stage Playlist</Button>{' '}
                 {/*<button onClick={() => { setPlayName(refInput.current.value);setStaged(true)}}>Stage Playlist</button>*/}
                 <h3>{playName}</h3>
                 {staged?dispPlay():<></>}
@@ -241,7 +232,7 @@ function Recommend(props) {
                 
               </div>
 
-          </Container>
+          </>
 
         );
       }
