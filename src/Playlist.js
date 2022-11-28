@@ -49,7 +49,7 @@ function Playlist(props) {
 
     return (
 
-<div style = {{backgroundColor : "black", height : "100vh", width : "100%"}}>
+    <>
         {data ? data[0].playlists.map((playlist) => (
             <PlayBox style = {{zIndex : "1", backgroundColor : props.bgColor, border : "2px solid", borderColor : props.color, color : props.color}}key={playlist.playName+" playBox"}>
                 <div key={playlist.playName} style={{transition:"all 0.5s ease"}} onClick={(e)=>{e.currentTarget.lastChild.style.display=="none"?e.currentTarget.lastChild.style.display="inline":e.currentTarget.lastChild.style.display="none"}}>
@@ -61,7 +61,7 @@ function Playlist(props) {
                     </ul>
                 </div>
             </PlayBox>
-        )) : <h6>No Playlist</h6>}</div>
+        )) : <h6>No Playlist</h6>}</>
     );
 }
 

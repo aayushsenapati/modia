@@ -106,15 +106,15 @@ export function App() {
 
 
   return(
-    <div className="modia-webpage">
+    <div className="modia-webpage" style={{backgroundColor:'#202020',height:'100vh'}}>
 
-    {token&&ud?<Navigate logout = {logout} ud={ud}/> : <></>}
+    {token&&ud?<Navigate logout = {logout} ud={ud} style={{display:'hidden'}}/> : <></>}
       <Routes>
         <Route path="/" exact element={<MoodPalette childState={childState} termState={termState} />} />
         <Route path="/login" exact element={<Login />} />
         <Route path="/rec" exact element={<Recommend valence={valence} energy={energy} bgColor={bgColor} color={color} term={term} ud={ud}/>}/>
         <Route path="/playlist" exact element={<Playlist bgColor={bgColor} color={color} ud={ud} />} />
-        <Route path="/about" exact element={<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FObiprIFAi8waObSnFKF5Pu%2FModia%3Fnode-id%3D0%253A1%26t%3D0IJnUcmrhHJlMSas-1"></iframe>} />
+        <Route path="/about" exact element={<Playlist bgColor={bgColor} color={color} ud={ud} />} />
       </Routes>
     </div>
   );

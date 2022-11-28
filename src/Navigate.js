@@ -7,7 +7,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 const Navigate = (props) => {
   let navigate = useNavigate();
     return(
-<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky = "top">
+<Navbar collapseOnSelect expand="lg" bg="black" variant="dark" sticky = "top" style={{backgroundColor:'#202020'}} shadow={true}>
 <Navbar.Brand href="#home">
 <img src={logo} alt = "error" style = {{height : "1em", width : "1em", marginRight : "1em", marginLeft : "1em"}}/>
   Modia

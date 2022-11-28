@@ -29,11 +29,11 @@ function MoodPalette(props) {
   
     let styleMood = {
       width: "75vw",
-      height: "85vh",
+      height: "35vw",
       margin: 'auto',
       marginTop:"50px",
       borderRadius: "20px",
-      border: "solid 3px black",
+      border: "solid 3px",
       transition: "background-color 1s ease, color 1s ease",
       position: "relative",
       left: "0px",
@@ -95,8 +95,8 @@ function MoodPalette(props) {
       };
       const updatec = (e) => {
         const offsets = ref.current.getBoundingClientRect();
-        const energy = ((1 / ref.current.offsetWidth) * (e.x - offsets.left)); //div coords
-        const valence = (1 / ref.current.offsetHeight) * (e.y - offsets.top); //div coords
+        const energy = (1 / ref.current.offsetWidth) * (e.x - offsets.left); //div coords
+        const valence = 1-(1 / ref.current.offsetHeight) * (e.y - offsets.top); //div coords
         console.log(valence, energy);
         props.childState(true, valence, energy,ref.current.style.backgroundColor,ref.current.style.color);
         console.log(ref.current.style.backgroundColor)
@@ -119,23 +119,14 @@ function MoodPalette(props) {
         <label>Long term:</label>
         <input id="value" type="radio" name="term" value="long_term" style={{display:"inline"}} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
         <div id="moodPaletteDiv" style={styleMood} ref={ref}>
-          <h1 id="p1" style={{ margin: "0px", }}>
+          <h1 id="p1" style={{ margin: "0px", fontSize:'4vw'}}>
             Modia
           </h1>
           <span
             style={{
               position: "absolute",
               top: "10%",
-              fontSize: 1.5 + offSetYT + "em",
-            }}
-          >
-            Somber
-          </span>
-          <span
-            style={{
-              position: "absolute",
-              top: "85%",
-              fontSize: 1.5 + offSetYB + "em",
+              fontSize: 1.5 + offSetYT + "vw",
             }}
           >
             Joyous
@@ -143,9 +134,18 @@ function MoodPalette(props) {
           <span
             style={{
               position: "absolute",
+              top: "85%",
+              fontSize: 1.5 + offSetYB + "vw",
+            }}
+          >
+            Gloomy
+          </span>
+          <span
+            style={{
+              position: "absolute",
               left: "10%",
               top: "50%",
-              fontSize: 1.5 + offSetXL + "em",
+              fontSize: 1.5 + offSetXL + "vw",
             }}
           >
             Mellow
@@ -156,15 +156,12 @@ function MoodPalette(props) {
               left: "80%",
               top: "50%",
               textAlign:'left',
-              fontSize: 1.5 + offSetXR + "em",
+              fontSize: 1.5 + offSetXR + "vw",
             }}
           >
             Upbeat
           </span>
-          <h4 style={{ position: "absolute", left: "2%", top: "90%" }}>
-            {`x: ${x}; y: ${y};`}
-            {width};{height}
-          </h4>
+          
         </div>
       </>
     );
