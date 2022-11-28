@@ -9,8 +9,9 @@ import {
 } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import React from 'react';
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, CarouselContext } from 'pure-react-carousel';
+import React from 'react';  
+import {Button} from "react-bootstrap";
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { Routes, Route, useNavigate } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
@@ -60,9 +61,9 @@ function SlideProvide(props) {
 
           style={{ backgroundColor: props.bgColor, border: "10px solid", borderColor: '#121212', borderRadius: "2.3vw" }}>
 
-          <img src={song.track.album.images[0].url} alt="image" style={{ width: '90%', height: 'auto', paddingTop: '10px' }}></img>
-          <h4 style={{ fontSize: '2vw' }}>{song.track.name}</h4>
-          <h5 style={{ fontSize: '1.5vw', position: 'absolute', marginLeft: '0.5vw' }}>{song.track.artists[0].name}</h5>
+          <img src={song.track.album.images[0].url} alt="image" style={{width:'90%',height:'auto',paddingTop:'10px'}}></img>
+          <h4  style={{fontSize : '2vw'}} >{song.track.name}</h4>
+          <h5 style={{position:'absolute',marginLeft:'10px', fontSize : '1.5vw'}}>{song.track.artists[0].name}</h5>
 
         </Slide>
       </div>
@@ -229,15 +230,17 @@ function Recommend(props) {
               <MemoSlideProvide color={props.color} bgColor={props.bgColor} objectArray={objectArray} slidePropFunc={slidePropFunc} />
             </div>
 
-            <div style={{ margin: "100px" }}>
-              <label htmlFor="playInput">Enter playlist name: </label>
-              <input id="playInput" type="text" ref={refInput} />
-              <button onClick={() => { setPlayName(refInput.current.value); setStaged(true) }}>Stage Playlist</button>
-              <h3>{playName}</h3>
-              {staged ? dispPlay() : <></>}
-              {staged ? <button onClick={() => { playArr.length ? uploadPlay() : window.alert("Select some songs!"); }}>Upload Playlist</button> : <></>}
-
-            </div>
+              <div style={{ margin: "100px" }}>
+                <label htmlFor="playInput">Enter playlist name: </label>
+                <input id="playInput" type="text" ref={refInput} />
+                <Button variant="outline-light" style = {{margin : "5px"}}onClick={() => { setPlayName(refInput.current.value);setStaged(true)}}>Stage Playlist</Button>{' '}
+                {/*<button onClick={() => { setPlayName(refInput.current.value);setStaged(true)}}>Stage Playlist</button>*/}
+                <h3>{playName}</h3>
+                {staged?dispPlay():<></>}
+                
+                {staged?<Button variant="outline-secondary" onClick={() => {playArr.length&&refInput.current.value.length ? uploadPlay() : window.alert("Select some songs or enter playlist name!");}}>Upload Playlist</Button>:<></>}
+                
+              </div>
 
           </Container>
 

@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 const PlayBox = styled.div`
     display : flex;
     flex-wrap: wrap;
+    flex-basis : 200px;
     flex-direction:column;
     justify-content : center;
     border-radius : 20px;

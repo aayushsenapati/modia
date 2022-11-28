@@ -16,5 +16,11 @@ userRoute.post('/getPlay',async (req,res)=>{
     res.send(data)
 })
 
+userRoute.post('/delPlay',async (req,res)=>{
+    //const userDB=user(req.body)
+    const data=await user.update({_id:req.body._id})
+    res.send(data)
+})
+
 export default userRoute
 
