@@ -20,7 +20,7 @@ import nextArrow from "./next-button.svg"
 
 
 const Container = styled.div`
-      background-color: #121212;
+      background-color: #202020;
       color:white;
       height : 100vh;
       width : 100vw;
@@ -58,7 +58,7 @@ function SlideProvide(props) {
             props.slidePropFunc(tempTracks); console.log(tempTracks);
           } }
 
-          style={{ backgroundColor: props.bgColor, border: "10px solid", borderColor: '#121212', borderRadius: "2.3vw" }}>
+          style={{ backgroundColor: props.bgColor, border: "10px solid", borderColor: '#202020', borderRadius: "2.3vw" }}>
 
           <img src={song.track.album.images[0].url} alt="image" style={{width:'90%',height:'auto',marginTop:'1vw',borderRadius:'1.5vw'}}></img>
           <h4  style={{fontSize : '1.8vw',height:'3.6vw',marginTop:'0.3vw'}} >{song.track.name.length>30?song.track.name.slice(0,27)+'...':song.track.name}</h4>
@@ -75,15 +75,15 @@ function SlideProvide(props) {
       totalSlides={props.objectArray.length + 4}
       visibleSlides={5}
     >
-      <Slider style={{ backgroundColor: "#121212", border: "5px solid", borderColor: props.color, color: props.color, width: "100vw", textAlign: "center", margin: "auto" }}>
+      <Slider style={{ backgroundColor: "#202020", border: "5px solid", borderColor: props.color, color: props.color, width: "100vw", textAlign: "center", margin: "auto" }}>
         <Slide />
         <Slide />
         {renderSongs()}
         <Slide />
         <Slide />
       </Slider>
-      <div style={{ background: "linear-gradient(to right,rgba(18,18,18,1) 0%,rgba(18,18,18,1) 30%, rgba(18,18,18,0.8)60%, rgba(18,18,18,0.1) 95%, rgba(18,18,18,0) 100%)", position: 'absolute', width: '40vw', height: '100%', top: '0' }}></div>
-      <div style={{ background: "linear-gradient(to left,rgba(18,18,18,1) 0%,rgba(18,18,18,1) 30%, rgba(18,18,18,0.8)60%, rgba(18,18,18,0.1) 95%, rgba(18,18,18,0) 100%)", position: 'absolute', width: '40vw', height: '100%', top: '0', left: '60vw' }}></div>
+      <div style={{ background: "linear-gradient(to right,rgba(32,32,32,1) 0%,rgba(32,32,32,1) 30%, rgba(32,32,32,0.8)60%, rgba(32,32,32,0.1) 95%, rgba(32,32,32,0) 100%)", position: 'absolute', width: '40vw', height: '100%', top: '0' }}></div>
+      <div style={{ background: "linear-gradient(to left,rgba(32,32,32,1) 0%,rgba(32,32,32,1) 30%, rgba(32,32,32,0.8)60%, rgba(32,32,32,0.1) 95%, rgba(32,32,32,0) 100%)", position: 'absolute', width: '40vw', height: '100%', top: '0', left: '60vw' }}></div>
 
        <ButtonBack style={{background:'none',border:'none',height:'4vw',width:'4vw',position:'absolute',top:'50%',left:'32%'}}><img src={backArrow} style={{width:'4vw',height:'auto'}} alt="not found"/></ButtonBack>
        <ButtonNext style={{background:'none',border:'none',height:'4vw',width:'4vw',position:'absolute',top:'50%',left:'62%'}}><img src={nextArrow} style={{width:'4vw',height:'auto'}} alt="Not Found"/></ButtonNext>
