@@ -221,8 +221,7 @@ function Recommend(props) {
             </div>
 
               <div style={{ margin: "100px" }}>
-                <label htmlFor="playInput">Enter playlist name: </label>
-                <input id="playInput" type="text" ref={refInput} />
+                <input id="playInput" type="text" placeholder = "Enter playlist name" ref={refInput} />
                 <Button variant="outline-light" style = {{margin : "5px"}}onClick={() => { setPlayName(refInput.current.value);setStaged(true);reRender?setReRender(false):setReRender(true)}}>Stage Playlist</Button>{' '}
                 {/*<button onClick={() => { setPlayName(refInput.current.value);setStaged(true)}}>Stage Playlist</button>*/}
                 
