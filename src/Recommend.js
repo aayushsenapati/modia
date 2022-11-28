@@ -15,7 +15,6 @@ import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-re
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { Routes, Route, useNavigate } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
-import { Button } from "bootstrap";
 import backArrow from "./back-button.svg"
 import nextArrow from "./next-button.svg"
 
