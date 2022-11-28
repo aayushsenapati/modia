@@ -11,7 +11,7 @@ const PlayBox = styled.div`
     flex-basis : 200px;
     flex-direction:column;
     justify-content : center;
-    border-radius : 20px;
+    border-radius : 10px;
     padding : 5px;
     margin : 20px;
     background-color : black;
