@@ -44,7 +44,7 @@ function SlideProvide(props) {
       <div key={song.track.id}>
         <Slide
           index={song.index}
-          onMouseDown={(e) => {
+          onDoubleClick ={(e) => {
             tempTracks.includes(song) ? tempTracks.splice(tempTracks.indexOf(song), 1) : tempTracks.push(song);
             e.currentTarget.style.transition = "background-color 0.5s ease,color 0.5s ease";
             if (e.currentTarget.style.backgroundColor == props.bgColor) {
@@ -60,9 +60,9 @@ function SlideProvide(props) {
 
           style={{ backgroundColor: props.bgColor, border: "10px solid", borderColor: '#121212', borderRadius: "2.3vw" }}>
 
-          <img src={song.track.album.images[0].url} alt="image" style={{width:'90%',height:'auto',paddingTop:'10px'}}></img>
-          <h4  style={{fontSize : '2vw'}} >{song.track.name}</h4>
-          <h5 style={{position:'absolute',marginLeft:'10px', fontSize : '1.5vw'}}>{song.track.artists[0].name}</h5>
+          <img src={song.track.album.images[0].url} alt="image" style={{width:'90%',height:'auto',marginTop:'1vw',borderRadius:'1.5vw'}}></img>
+          <h4  style={{fontSize : '1.8vw',height:'3.6vw',marginTop:'0.3vw'}} >{song.track.name.length>30?song.track.name.slice(0,27)+'...':song.track.name}</h4>
+          <h5 style={{position:'absolute',marginLeft:'10px', fontSize : '1.3vw',marginTop:'0.5vw'}}>{song.track.artists[0].name}</h5>
 
         </Slide>
       </div>

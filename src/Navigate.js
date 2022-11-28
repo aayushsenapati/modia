@@ -1,4 +1,5 @@
 import logo from "./mlogo.png"
+import defUser from "./defUser.png"
 import { Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
@@ -20,7 +21,7 @@ const Navigate = (props) => {
   <Nav>
     <Nav.Link href="#deets">About</Nav.Link></Nav>
     <Nav className = 'ms-auto'>
-    <img src={props.ud.images.length?props.ud.images[0].url:''} alt = "error" style = {{height : "50px", width : "50px", marginRight : "1em", marginLeft : "1em",borderRadius:"50%"}}/>
+    <img src={props.ud.images.length?props.ud.images[0].url:defUser} alt = "error" style = {{height : "50px", width : "50px", marginRight : "1em", marginLeft : "1em",borderRadius:"50%"}}/>
     <Button onClick={props.logout} style = {{width : "80px", marginRight : "30px"}}>Logout</Button>
   </Nav>
 </Navbar.Collapse>
