@@ -39,20 +39,17 @@ img {
   margin-top : 10px; 
   z-index:2;
 }
-
 label {
   display: inline-block;
   width: 200px;
   padding: 10px;
-  border: solid 2px #ccc;
-  transition: all 0.3s;
+  border-radius : 3vw;
+  transition: all 0.4s;
   color : white;
-}
-
-input[type="radio"] {
-  display: none;
+  text-align: center;
 }
 
 input[type="radio"]:checked + label {
-  border: solid 2px green;
+  background-color:#00C524;
+  color : black;
 }

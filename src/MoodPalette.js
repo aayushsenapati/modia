@@ -112,12 +112,13 @@ function MoodPalette(props) {
   
     return (
       <>
-        <input id="short" type="radio" name="term" value="short_term" style={{display:"inline"}} defaultChecked={true} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
-        <label for = "short">Short term</label>
-        <input id="medium" type="radio" name="term" value="medium_term" style={{display:"inline"}} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
-        <label for = "medium">Medium term</label>
-        <input id="long" type="radio" name="term" value="long_term" style={{display:"inline"}} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
-        <label for = "long">Long term</label>
+      <div style = {{display : "flex", width : "100vw", justifyContent : "center", columnGap : "2vw"}}>
+      <input id="short" type="radio" name="term" value="short_term" style={{display:"none"}} defaultChecked={true} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
+      <label style = {{ width : "13vw", height : "6vh"}}for = "short">Short term</label>
+      <input id="medium" type="radio" name="term" value="medium_term" style={{display:"none"}} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
+      <label style = {{width : "13vw", height : "6vh"}}for = "medium">Medium term</label>
+      <input id="long" type="radio" name="term" value="long_term" style={{display:"none"}} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
+      <label style = {{width : "13vw", height : "6vh"}}for = "long">Long term</label></div>
         <div id="moodPaletteDiv" style={styleMood} ref={ref}>
           <h1 id="p1" style={{ margin: "0px", fontSize:'4vw'}}>
             Modia
