@@ -51,7 +51,7 @@ function Playlist(props) {
 
     <>
         {data ? data[0].playlists.map((playlist) => (
-            <PlayBox style = {{zIndex : "1", backgroundColor : props.bgColor, border : "2px solid", borderColor : props.color, color : props.color}}key={playlist.playName+" playBox"}>
+            <PlayBox style = {{zIndex : "1", backgroundColor : "black", border : "2px solid", borderColor :"white", color : "white"}} key={playlist.playName+" playBox"}>
                 <div key={playlist.playName} style={{transition:"all 0.5s ease"}} onClick={(e)=>{e.currentTarget.lastChild.style.display=="none"?e.currentTarget.lastChild.style.display="inline":e.currentTarget.lastChild.style.display="none"}}>
                     <h6 key={playlist.playName+" heading"}>{playlist.playName}</h6>
                     <ul key={playlist.playName+" ul"} style={{display:"none"}}>
