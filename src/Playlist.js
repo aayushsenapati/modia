@@ -16,8 +16,12 @@ const PlayBox = styled.div`
     `;
 
 const PlayBoxParent = styled.div`
-    display : grid; 
+display: grid;
+gap: 1rem;
+grid-template-columns: repeat(auto-fit, 20rem);
     `;
+
+
 
 
 function Playlist(props) {
@@ -25,7 +29,7 @@ function Playlist(props) {
     useEffect(() => {
         let isMounted = true
 
-
+        
 
         const getPlay = async () => {
             const { data } = await axios.post("http://127.0.0.1:5000/api/getPlay", {
@@ -44,12 +48,23 @@ function Playlist(props) {
             getPlay()
     })
 
+    const expandPlay = (e)=>{
+        e.currentTarget.lastChild.style.display="inline"
+        e.currentTarget.style.gridRow='span 3'
+    }
+    
+    const collapsePlay = (e)=>{
+        e.currentTarget.lastChild.style.display="none"
+        e.currentTarget.style.gridRow='span 1'
+
+    }
+
     return (
 
     <PlayBoxParent>
         {data ? data[0].playlists.map((playlist) => (
             <PlayBox style = {{zIndex : "1", backgroundColor : "black", border : "2px solid", borderColor :"white", color : "white"}} key={playlist.playName+" playBox"}>
-                <div key={playlist.playName} style={{transition:"all 0.5s ease"}} onClick={(e)=>{e.currentTarget.lastChild.style.display=="none"?e.currentTarget.lastChild.style.display="inline":e.currentTarget.lastChild.style.display="none"}}>
+                <div key={playlist.playName} style={{transition:"all 0.5s ease"}} onClick={(e)=>{e.currentTarget.lastChild.style.display=="none"?expandPlay(e):collapsePlay(e)}}>
                     <h5 style={{fontSize:"2vw"}} key={playlist.playName+" heading"}>{playlist.playName}</h5>
                     <div key={playlist.playName+" ul"} style={{display:"none"}}>
                         {playlist.tracks.map((song) => (
