@@ -8,6 +8,7 @@ import {
 import axios from "axios";
 import styled from "styled-components";
 import React from 'react';  
+import {Button} from "react-bootstrap";
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { Routes, Route, useNavigate } from "react-router-dom";
@@ -57,8 +58,8 @@ function SlideProvide(props){
         style={{ backgroundColor: props.bgColor, border: "10px solid", borderColor: '#121212', borderRadius: "23px" }}>
 
           <img src={song.track.album.images[0].url} alt="image" style={{width:'90%',height:'auto',paddingTop:'10px'}}></img>
-          <h4   >{song.track.name}</h4>
-          <h5 style={{position:'absolute',marginLeft:'10px'}}>{song.track.artists[0].name}</h5>
+          <h4  style={{fontSize : '2vw'}} >{song.track.name}</h4>
+          <h5 style={{position:'absolute',marginLeft:'10px', fontSize : '1.5vw'}}>{song.track.artists[0].name}</h5>
 
         </Slide>
       </div>
@@ -81,8 +82,8 @@ function SlideProvide(props){
                   <div style={{ background: "linear-gradient(to right,rgba(18,18,18,1) 0%,rgba(18,18,18,1) 30%, rgba(18,18,18,0.8)60%, rgba(18,18,18,0.1) 95%, rgba(18,18,18,0) 100%)", position: 'absolute', width: '40vw', height: '100%', top: '0' }}></div>
                   <div style={{ background: "linear-gradient(to left,rgba(18,18,18,1) 0%,rgba(18,18,18,1) 30%, rgba(18,18,18,0.8)60%, rgba(18,18,18,0.1) 95%, rgba(18,18,18,0) 100%)", position: 'absolute', width: '40vw', height: '100%', top: '0', left: '60vw' }}></div>
                   <div id="buttonContainer" style={{ display: 'flex', justifyContent: 'center' }}>
-                    <ButtonBack id="backnext" style={{ backgroundColor: props.color, color: props.bgColor, borderColor: props.bgColor, display: 'inline-block', margin: '10px' }}>Back</ButtonBack>
-                    <ButtonNext id="backnext" style={{ backgroundColor: props.color, color: props.bgColor, borderColor: props.bgColor, display: 'inline-block', margin: '10px' }}>Next</ButtonNext>
+                    <ButtonBack id="backnext" style={{width : '9vw', height : '8vh', fontSize : '1.8vw', backgroundColor: props.color, color: props.bgColor, borderColor: props.bgColor, display: 'inline-block', margin: '10px' }}>Back</ButtonBack>
+                    <ButtonNext id="backnext" style={{width : '9vw', height : '8vh', fontSize : '1.8vw', backgroundColor: props.color, color: props.bgColor, borderColor: props.bgColor, display: 'inline-block', margin: '10px' }}>Next</ButtonNext>
                   </div>
   </CarouselProvider>)
 }
@@ -229,10 +230,12 @@ function Recommend(props) {
               <div style={{ margin: "100px" }}>
                 <label htmlFor="playInput">Enter playlist name: </label>
                 <input id="playInput" type="text" ref={refInput} />
-                <button onClick={() => { setPlayName(refInput.current.value);setStaged(true)}}>Stage Playlist</button>
+                <Button variant="outline-light" style = {{margin : "5px"}}onClick={() => { setPlayName(refInput.current.value);setStaged(true)}}>Stage Playlist</Button>{' '}
+                {/*<button onClick={() => { setPlayName(refInput.current.value);setStaged(true)}}>Stage Playlist</button>*/}
                 <h3>{playName}</h3>
                 {staged?dispPlay():<></>}
-                {staged?<button onClick={() => {playArr.length ? uploadPlay() : window.alert("Select some songs!");}}>Upload Playlist</button>:<></>}
+                
+                {staged?<Button variant="outline-secondary" onClick={() => {playArr.length&&refInput.current.value.length ? uploadPlay() : window.alert("Select some songs or enter playlist name!");}}>Upload Playlist</Button>:<></>}
                 
               </div>
 
