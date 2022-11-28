@@ -96,8 +96,6 @@ export function App() {
     setTerm(term)
   };
 
- 
-
   const s1 = useSpring({
     to: { opacity: 1 },
     from: { opacity: 0 },
@@ -106,7 +104,7 @@ export function App() {
 
 
   return(
-    <div className="modia-webpage" style={{backgroundColor:'#202020',height:'100vh'}}>
+    <div className="modia-webpage" style={{backgroundColor:'#202020',overflowY:"auto",height:"100vh"}}>
 
     {token&&ud?<Navigate logout = {logout} ud={ud} style={{display:'hidden'}}/> : <></>}
       <Routes>

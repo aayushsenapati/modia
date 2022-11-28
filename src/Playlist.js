@@ -6,11 +6,6 @@ import { useState, useEffect } from "react";
 
 
 const PlayBox = styled.div`
-    display : flex;
-    flex-wrap: wrap;
-    flex-basis : 200px;
-    flex-direction:column;
-    justify-content : center;
     border-radius : 10px;
     padding : 5px;
     margin : 20px;
@@ -18,8 +13,10 @@ const PlayBox = styled.div`
     color : white;
     width : 20vw;
     font-size : 3vh;
+    `;
 
-
+const PlayBoxParent = styled.div`
+    display : grid; 
     `;
 
 
@@ -49,19 +46,19 @@ function Playlist(props) {
 
     return (
 
-    <>
+    <PlayBoxParent>
         {data ? data[0].playlists.map((playlist) => (
             <PlayBox style = {{zIndex : "1", backgroundColor : "black", border : "2px solid", borderColor :"white", color : "white"}} key={playlist.playName+" playBox"}>
                 <div key={playlist.playName} style={{transition:"all 0.5s ease"}} onClick={(e)=>{e.currentTarget.lastChild.style.display=="none"?e.currentTarget.lastChild.style.display="inline":e.currentTarget.lastChild.style.display="none"}}>
-                    <h6 key={playlist.playName+" heading"}>{playlist.playName}</h6>
-                    <ul key={playlist.playName+" ul"} style={{display:"none"}}>
+                    <h5 style={{fontSize:"2vw"}} key={playlist.playName+" heading"}>{playlist.playName}</h5>
+                    <div key={playlist.playName+" ul"} style={{display:"none"}}>
                         {playlist.tracks.map((song) => (
-                            <li key={song.track.name}>{song.track.name}</li>
+                            <h6 style={{fontSize:"1.5vw"}} key={song.track.name}>{song.track.name}</h6>
                         ))}
-                    </ul>
+                    </div>
                 </div>
             </PlayBox>
-        )) : <h6>No Playlist</h6>}</>
+        )) : <h6>No Playlist</h6>}</PlayBoxParent>
     );
 }
 
