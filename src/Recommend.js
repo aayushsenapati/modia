@@ -212,18 +212,18 @@ function Recommend(props) {
 
         return (
           <>
-            <div style={{ margin: "100px", color: "white" }}>
+            <div style={{ margin: "100px", color: "white",display:'none'}}>
               <h6 style={{ marginTop: "0px", color: "white" }}>Valence:{props.valence}</h6>
               <h6 style={{ color: "white" }}>Energy:{props.energy}</h6>
               <h6 style={{ color: "white" }}>Color:{props.color}</h6>
               <h6 style={{ color: "white" }}>BGColor:{props.bgColor}</h6>
             </div>
 
-            <div>
+            <div style={{marginTop:'4vw'}}>
               <MemoSlideProvide color={props.color} bgColor={props.bgColor} objectArray={objectArray} slidePropFunc={slidePropFunc} />
             </div>
 
-            <div style={{ margin: "100px" }}>
+            <div style={{ margin: "2vw" }}>
             <input id="playInput" type="text" label="Enter playlist name" ref={refInput} style={{width:"15vw"}}/>
               <Button variant="outline-light" style={{ margin: "5px" }} onClick={() => {refInput.current.value.length?setPlayName(refInput.current.value):window.alert("Enter playlist name!"); setStaged(true); reRender ? setReRender(false) : setReRender(true) }}>Stage Playlist</Button>{' '}
 
