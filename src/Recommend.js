@@ -18,6 +18,7 @@ import backArrow from "./back-button.svg"
 import nextArrow from "./next-button.svg"
 import { MDBInput } from 'mdb-react-ui-kit';
 import Form from 'react-bootstrap/Form';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 
 
@@ -223,8 +224,8 @@ function Recommend(props) {
             </div>
 
             <div style={{ margin: "100px" }}>
-              <MDBInput id="playInput" type="text" label="Enter playlist name" ref={refInput} style={{width:"15vw"}}/>
-              <Button variant="outline-light" style={{ margin: "5px" }} onClick={() => { setPlayName(refInput.current.value); setStaged(true); reRender ? setReRender(false) : setReRender(true) }}>Stage Playlist</Button>{' '}
+            <input id="playInput" type="text" label="Enter playlist name" ref={refInput} style={{width:"15vw"}}/>
+              <Button variant="outline-light" style={{ margin: "5px" }} onClick={() => {refInput.current.value.length?setPlayName(refInput.current.value):window.alert("Enter playlist name!"); setStaged(true); reRender ? setReRender(false) : setReRender(true) }}>Stage Playlist</Button>{' '}
 
               {staged ? <div>
 
@@ -235,7 +236,7 @@ function Recommend(props) {
               </div> : <></>
               }
 
-              {staged ? <Button variant="outline-secondary" onClick={() => { playArr.length && refInput.current.value.length ? uploadPlay() : window.alert("Select some songs or enter playlist name!"); }}>Upload Playlist</Button> : <></>}
+              {staged ? <Button variant="outline-secondary" onClick={() => { playArr.length ? uploadPlay() : window.alert("Select some songs!"); }}>Upload Playlist</Button> : <></>}
 
             </div>
 
