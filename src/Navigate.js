@@ -22,7 +22,7 @@ const Navigate = (props) => {
               <Nav.Link onClick={()=>navigate("/playlist")}>Playlist</Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">About</Nav.Link></Nav>
+              <Nav.Link onClick={()=>navigate("/about")}>About</Nav.Link></Nav>
               <Nav className = 'ms-auto'>
               <img src={props.ud.images.length?props.ud.images[0].url:defUser} alt = "error" style = {{height : "40px", width : "40px", marginRight : "1em", marginLeft : "1em",borderRadius:"50%"}}/>
               <Button onClick={props.logout} style = {{width : "80px", marginRight : "30px"}}>Logout</Button>

@@ -19,7 +19,7 @@ import Recommend from "./Recommend";
 import Navigate from "./Navigate";
 import Playlist from "./Playlist";
 import Home from "./Home";
-
+import About from "./About";
 
 
 export function App() {
@@ -73,7 +73,7 @@ export function App() {
         }
         else {
             navigate("/rec", { replace: true })
-          }
+          } 
     }
 
     },[token,clicked,ud]);
@@ -116,7 +116,7 @@ export function App() {
         <Route path="/login" exact element={<Login />} />
         <Route path="/rec" exact element={<Recommend valence={valence} energy={energy} bgColor={bgColor} color={color} term={term} ud={ud}/>}/>
         <Route path="/playlist" exact element={<Playlist bgColor={bgColor} color={color} ud={ud} />} />
-        <Route path="/about" exact element={<Playlist bgColor={bgColor} color={color} ud={ud} />} />
+        <Route path="/about" exact element={<About/>}/>
       </Routes>
     </div>
   );
