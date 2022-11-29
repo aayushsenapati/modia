@@ -225,9 +225,16 @@ function Recommend(props) {
 
             <div style={{ margin: "100px" }}>
             <input id="playInput" type="text" label="Enter playlist name" ref={refInput} style={{width:"15vw"}}/>
-              <Button variant="outline-light" style={{ margin: "5px" }} onClick={() => {refInput.current.value.length?setPlayName(refInput.current.value):window.alert("Enter playlist name!"); setStaged(true); reRender ? setReRender(false) : setReRender(true) }}>Stage Playlist</Button>{' '}
+              <Button variant="outline-light" style={{ margin: "5px" }} onClick={() => {
+              if(refInput.current.value.length){
+              setPlayName(refInput.current.value)
+              setStaged(true)
+              }
+              else{
+              window.alert("Enter playlist name!")}
+              reRender ? setReRender(false) : setReRender(true) }}>Stage Playlist</Button>{' '}
 
-              {staged ? <div>
+              {staged? <div>
 
                 <h3 style={{ color: "white" }}>{playName}</h3>
                 <hr style={{ color: "white" }} />
