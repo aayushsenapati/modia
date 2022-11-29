@@ -6,19 +6,21 @@ import { useState, useEffect } from "react";
 
 
 const PlayBox = styled.div`
-    border-radius : 10px;
-    padding : 5px;
-    margin : 20px;
-    background-color : black;
-    color : white;
-    width : 20vw;
-    font-size : 3vh;
+    borderRadius : '10px',
+    padding : 5px,
+    margin : 20px,
+    backgroundColor : black,
+    color : white,
+    width : 20vw,
+    fontSize : 3vh
     `;
 
 const PlayBoxParent = styled.div`
-display: grid;
-gap: 1rem;
-grid-template-columns: repeat(auto-fit, 20rem);
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  
     `;
 
 
@@ -48,23 +50,15 @@ function Playlist(props) {
             getPlay()
     })
 
-    const expandPlay = (e)=>{
-        e.currentTarget.lastChild.style.display="inline"
-        e.currentTarget.style.gridRow='span 3'
-    }
     
-    const collapsePlay = (e)=>{
-        e.currentTarget.lastChild.style.display="none"
-        e.currentTarget.style.gridRow='span 1'
 
-    }
-
+    
     return (
 
     <PlayBoxParent>
         {data ? data[0].playlists.map((playlist) => (
-            <PlayBox style = {{zIndex : "1", backgroundColor : "black", border : "2px solid", borderColor :"white", color : "white"}} key={playlist.playName+" playBox"}>
-                <div key={playlist.playName} style={{transition:"all 0.5s ease"}} onClick={(e)=>{e.currentTarget.lastChild.style.display=="none"?expandPlay(e):collapsePlay(e)}}>
+                <div key={playlist.playName} className='collapsed' style={{zIndex : "1", border : "2px solid", borderColor :"white", color : "white",borderRadius : '10px',padding : '5px',margin : '20px',backgroundColor : 'black',color : 'white',width : '20vw',fontSize : '3vh',height:'auto'}} 
+                    onClick={(e)=>{e.currentTarget.lastChild.style.display=="none"? e.currentTarget.lastChild.style.display="inline":e.currentTarget.lastChild.style.display="none"}}>
                     <h5 style={{fontSize:"2vw"}} key={playlist.playName+" heading"}>{playlist.playName}</h5>
                     <div key={playlist.playName+" ul"} style={{display:"none"}}>
                         {playlist.tracks.map((song) => (
@@ -72,7 +66,6 @@ function Playlist(props) {
                         ))}
                     </div>
                 </div>
-            </PlayBox>
         )) : <h6>No Playlist</h6>}</PlayBoxParent>
     );
 }
