@@ -56,7 +56,7 @@ function Playlist(props) {
 
     <PlayBoxParent>
         {data ? data[0].playlists.map((playlist) => (
-                <div key={playlist.playName} style={{zIndex : "1", border : "2px solid", borderColor :"white", color : "white",borderRadius : '1vw',padding : '0.5vw',margin : '2vw',backgroundColor : 'black',color : 'white',width : '20vw',fontSize : '3vh',height:'auto'}} 
+                <div key={playlist.date} style={{zIndex : "1", border : "2px solid", borderColor :"white", color : "white",borderRadius : '1vw',padding : '0.5vw',margin : '2vw',backgroundColor : 'black',color : 'white',width : '20vw',fontSize : '3vh',height:'auto'}} 
                     onClick={(e)=>{e.currentTarget.lastChild.style.display=="none"? e.currentTarget.lastChild.style.display="inline":e.currentTarget.lastChild.style.display="none"}}>
                     <h5 style={{fontSize:"2vw"}} key={playlist.playName+" heading"}>{playlist.playName}</h5>
                     <div key={playlist.playName+" ul"} style={{display:"none"}}>
