@@ -35,15 +35,15 @@ export function Home() {
     <div style = {{display:'flex',justifyContent:'center',position:'sticky',top:'18vw'}}>
         <div id = "desc" style = {featureStyle}>
         <img src = {selectLogo} style = {{height : '18vh', position : "relative", left : '35%'}}/>
-            <h2 style={centerStyle}>Easy song selection</h2>
+            <h2 style={centerStyle}>Select your <br/>Current Mood</h2>
         </div>
         <div id = "desc"  style = {featureStyle}>
             <img src = {songLogo} style = {{height : '18vh', position : "relative", left : '35%'}}/>
-            <h2 style={centerStyle}>Access all your playlists at once</h2>
+            <h2 style={centerStyle}>Select Songs from our Curated List</h2>
         </div>
         <div id = "desc"  style = {featureStyle}>
         <img src = {playlistLogo} style = {{height : '18vh', position : "relative", left : '35%'}}/>
-            <h2 style={centerStyle}>Create playlists based on your mood</h2>
+            <h2 style={centerStyle}>Create and View your Presonalised Palylists</h2>
         </div>
     </div>
     <Button variant = "outline-success" style = {{position : "sticky", left : "44%", top : "40vw", margin : "5vw", borderRadius : "50px", height : "5vw", width : "12vw"}} 
