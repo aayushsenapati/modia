@@ -118,11 +118,11 @@ function MoodPalette(props) {
       <>
       <div style = {{display : "flex", width : "100vw", justifyContent : "center", columnGap : "2vw",marginTop:"2vh"}}>
         <input id="short" type="radio" name="term" value="short_term" style={{display:"none"}} defaultChecked={true} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
-        <label style = {{ width : "13vw", height : "6vh"}}htmlFor = "short">Short term</label>
+        <label style = {{ width : "13vw", height : "6vh", fontSize : "1.2vw"}}htmlFor = "short">Short term</label>
         <input id="medium" type="radio" name="term" value="medium_term" style={{display:"none"}} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
-        <label style = {{width : "13vw", height : "6vh"}}htmlFor = "medium">Medium term</label>
+        <label style = {{width : "13vw", height : "6vh", fontSize : "1.2vw"}}htmlFor = "medium">Medium term</label>
         <input id="long" type="radio" name="term" value="long_term" style={{display:"none"}} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
-        <label style = {{width : "13vw", height : "6vh"}}htmlFor = "long">Long term</label>
+        <label style = {{width : "13vw", height : "6vh", fontSize : "1.2vw"}}htmlFor = "long">Long term</label>
       </div>
         <div id="moodPaletteDiv" style={styleMood} ref={ref}>
           <h1 id="p1" style={{ margin: "0px", fontSize:'4vw'}}>

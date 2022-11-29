@@ -47,11 +47,13 @@ label {
   transition: all 0.4s;
   color : white;
   text-align: center;
+  font-size : 1.2vw;
 }
 
 input[type="radio"]:checked + label {
   background-color:#00C524;
   color : black;
+  font-size : 1.4vw;
 }
 
 
