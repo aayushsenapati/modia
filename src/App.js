@@ -44,6 +44,8 @@ export function App() {
     console.log("user data:", data);
     setUd(data);
   };
+
+  
   useEffect(() => {
 
     let hash = window.location.hash;
