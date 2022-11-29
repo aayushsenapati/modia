@@ -57,7 +57,7 @@ function MoodPalette(props) {
     } //yellow
     if (y > -(height / width) * x + height && y > (height / width) * x) {
       styleMood.backgroundColor = "#ff4e2a"; //red
-      styleMood.color = "#290740";
+      styleMood.color = "#410b66";
     } //red
         
     useEffect(() => {
