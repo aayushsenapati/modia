@@ -17,10 +17,9 @@ const PlayBox = styled.div`
 
 const PlayBoxParent = styled.div`
     display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
     `;
 
 
@@ -31,7 +30,7 @@ function Playlist(props) {
     useEffect(() => {
         let isMounted = true
 
-        
+
 
         const getPlay = async () => {
             const { data } = await axios.post("http://127.0.0.1:5000/api/getPlay", {
@@ -50,9 +49,9 @@ function Playlist(props) {
             getPlay()
     })
 
-    
 
-    
+
+
     return (
 
     <PlayBoxParent>
@@ -66,7 +65,7 @@ function Playlist(props) {
                         ))}
                     </div>
                 </div>
-        )) : <h6>No Playlist</h6>}</PlayBoxParent>
+            )) : <h6>No Playlist</h6>}</PlayBoxParent>
     );
 }
 
