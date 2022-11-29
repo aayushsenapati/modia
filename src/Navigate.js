@@ -2,7 +2,7 @@ import logo from "./mlogo.png"
 import defUser from "./defUser.png"
 import { Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navigate = (props) => {
   let navigate = useNavigate();

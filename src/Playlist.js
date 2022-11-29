@@ -3,6 +3,7 @@ import "./App.css";
 import styled from "styled-components";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const PlayBox = styled.div`
@@ -26,11 +27,12 @@ const PlayBoxParent = styled.div`
 
 
 function Playlist(props) {
+    console.log(props.ud)
     const [data, setData] = useState()
+    let navigate = useNavigate();
+
     useEffect(() => {
         let isMounted = true
-
-
 
         const getPlay = async () => {
             const { data } = await axios.post("http://127.0.0.1:5000/api/getPlay", {
@@ -42,11 +44,18 @@ function Playlist(props) {
             console.log(data[0]);
             if (isMounted)
                 setData(data)
-
         }
 
-        if (!data && props.ud.id)
+        if(!(props.ud))
+            navigate('/')
+        else{
+            if (!data && props.ud.id)
             getPlay()
+        }
+
+
+
+        
     })
 
 
