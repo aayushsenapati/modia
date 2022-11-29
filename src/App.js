@@ -18,6 +18,7 @@ import Login from "./Login";
 import Recommend from "./Recommend";
 import Navigate from "./Navigate";
 import Playlist from "./Playlist";
+import Home from "./Home";
 
 
 
@@ -108,7 +109,8 @@ export function App() {
 
     {token&&ud?<Navigate logout = {logout} ud={ud} style={{display:'hidden'}}/> : <></>}
       <Routes>
-        <Route path="/" exact element={<MoodPalette childState={childState} termState={termState} />} />
+        <Route path="/" exact element={<Home/>} />
+        <Route path="/mood" exact element={<MoodPalette childState={childState} termState={termState} />} />
         <Route path="/login" exact element={<Login />} />
         <Route path="/rec" exact element={<Recommend valence={valence} energy={energy} bgColor={bgColor} color={color} term={term} ud={ud}/>}/>
         <Route path="/playlist" exact element={<Playlist bgColor={bgColor} color={color} ud={ud} />} />

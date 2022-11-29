@@ -35,7 +35,8 @@ function SlideProvide(props) {
       <div key={song.track.id}>
         <Slide
           index={song.index}
-          onDoubleClick={(e) => {
+          onClick = {(e)=>{e.focus()}}
+          onDoubleClick ={(e) => {
             tempTracks.includes(song) ? tempTracks.splice(tempTracks.indexOf(song), 1) : tempTracks.push(song);
             e.currentTarget.style.transition = "background-color 0.5s ease,color 0.5s ease";
             if (e.currentTarget.style.backgroundColor == props.bgColor) {
