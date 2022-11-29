@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import "./App.css";
 import bg from './main-bg.jpg'
 import songLogo from './song.svg'
@@ -60,4 +58,3 @@ export function Home() {
 
 
 export default Home;
->>>>>>> parent of 4344ed5 (aa)
