@@ -117,7 +117,7 @@ function MoodPalette(props) {
     return (
       <>
       <div style = {{display : "flex", width : "100vw", justifyContent : "center", columnGap : "2vw",marginTop:"2vh"}}>
-        <input id="short" type="radio" name="term" value="short_term" style={{display:"none"}} defaultChecked={true} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
+        <input id="short" type="radio" name="term" value="short_term" style={{display:"none"}} defaultChecked={true} xlick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
         <label style = {{ width : "13vw", height : "6vh", fontSize : "1.2vw"}}htmlFor = "short">Short term</label>
         <input id="medium" type="radio" name="term" value="medium_term" style={{display:"none"}} onClick={(e)=>{props.termState(e.target.value);console.log(e.target.value)}}/>
         <label style = {{width : "13vw", height : "6vh", fontSize : "1.2vw"}}htmlFor = "medium">Medium term</label>
