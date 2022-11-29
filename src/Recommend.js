@@ -222,27 +222,27 @@ function Recommend(props) {
               <MemoSlideProvide color={props.color} bgColor={props.bgColor} objectArray={objectArray} slidePropFunc={slidePropFunc} />
             </div>
 
-            <div style={{ margin: "2vw" }}>
-            <input id="playInput" type="text" label="Enter playlist name" ref={refInput} style={{width:"15vw"}}/>
-              <Button variant="outline-light" style={{ margin: "5px" }} onClick={() => {
-              if(refInput.current.value.length){
-              setPlayName(refInput.current.value)
-              setStaged(true)
-              }
-              else{
-              window.alert("Enter playlist name!")}
-              reRender ? setReRender(false) : setReRender(true) }}>Stage Playlist</Button>{' '}
+            <div style={{ margin: "auto" ,width:'30vw',marginTop:'20px'}}>
+              <input id="playInput" type="text" placeholder="Enter playlist name" ref={refInput} style={{height:'2.4vw',width:"15vw",background:'none',border:'1px solid #e0e0e0',color:'#e0e0e0',borderRadius:'5px'}}/>
+                <Button variant="outline-ligh t" style={{ marginLeft: "30px",height:'2.5vw' }} onClick={() => {
+                if(refInput.current.value.length){
+                setPlayName(refInput.current.value)
+                setStaged(true)
+                }
+                else{
+                window.alert("Enter playlist name!")}
+                reRender ? setReRender(false) : setReRender(true) }}>Stage Playlist</Button>{' '}
 
-              {staged? <div>
+                {staged? <div>
 
-                <h3 style={{ color: "white" }}>{playName}</h3>
-                <hr style={{ color: "white" }} />
-                {dispPlay()}
-                <hr style={{ color: "white" }} />
-              </div> : <></>
-              }
+                  <h3 style={{ color: "white" }}>{playName}</h3>
+                  <hr style={{ color: "white" }} />
+                  {dispPlay()}
+                  <hr style={{ color: "white" }} />
+                </div> : <></>
+                }
 
-              {staged ? <Button variant="outline-secondary" onClick={() => { playArr.length ? uploadPlay() : window.alert("Select some songs!"); }}>Upload Playlist</Button> : <></>}
+                {staged ? <Button variant="outline-secondary" onClick={() => { playArr.length ? uploadPlay() : window.alert("Select some songs!"); }}>Upload Playlist</Button> : <></>}
 
             </div>
 
