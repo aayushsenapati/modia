@@ -1,5 +1,7 @@
 import "./App.css";
 import styled from "styled-components";
+import {useNavigate} from 'react-router-dom'
+
 
 
 
@@ -16,16 +18,17 @@ function MoodPalette(props) {
   const [x, setX] = useState();
   const [y, setY] = useState();
   // let navigate = useNavigate();
-    const ref = useRef(null);
-    const [width, setWidth] = useState();
-    const [height, setHeight] = useState();
-    //const [clicked, setClicked] = useState(false);
-    const [offSetXL, setOffSetXL] = useState(0);
-    const [offSetXR, setOffSetXR] = useState(0);
-    const [offSetYT, setOffSetYT] = useState(0);
-    const [offSetYB, setOffSetYB] = useState(0);
-    
-    
+  const ref = useRef(null);
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+  //const [clicked, setClicked] = useState(false);
+  const [offSetXL, setOffSetXL] = useState(0);
+  const [offSetXR, setOffSetXR] = useState(0);
+  const [offSetYT, setOffSetYT] = useState(0);
+  const [offSetYB, setOffSetYB] = useState(0);
+  
+  const navigate = useNavigate();
+  
   
     let styleMood = {
       width: "75vw",
@@ -101,6 +104,7 @@ function MoodPalette(props) {
         props.childState(true, valence, energy,ref.current.style.backgroundColor,ref.current.style.color);
         console.log(ref.current.style.backgroundColor)
         console.log(ref.current.style.color)
+        navigate("/rec", { replace: true })
       };
 
 

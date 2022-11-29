@@ -66,12 +66,13 @@ export function App() {
       if(!ud){
         getUserData()
       }
-      if (!clicked) {
+      // if (!clicked) {
+        //   navigate("/", { replace: true })
+        // }
+        // else {
+          //   navigate("/rec", { replace: true })
+          // }
         navigate("/", { replace: true })
-      }
-      else {
-        navigate("/rec", { replace: true })
-      }
     }
 
     },[token,clicked,ud]);
