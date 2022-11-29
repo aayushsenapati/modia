@@ -19,17 +19,7 @@ import backArrow from "./back-button.svg"
 import nextArrow from "./next-button.svg"
 
 
-const Container = styled.div`
-      background-color: #202020;
-      color:white;
-      height : 100vh;
-      width : 100vw;
-      overflow-y: auto;
-      display:flex;
-      flex-flow:row wrap;
-      justify-content: center;
-      
-    `;
+
 function propsAreEqual(prev, next) {
   console.log("rerender?")
   return (JSON.stringify(prev.objectArray) === JSON.stringify(next.objectArray) && prev.color === next.color && prev.bgColor === next.bgColor)
@@ -101,6 +91,7 @@ function Recommend(props) {
   const refInput = useRef(null)
   const [playArr, setPlayArr] = useState([])
   const [staged, setStaged] = useState(false)
+  const [reRender,setReRender]=useState(false)
   const idArray = [];
   let navigate = useNavigate();
 
@@ -122,7 +113,7 @@ function Recommend(props) {
       <>
         {playArr.map((song) =>
         (
-          <h6 key={song.track.id}>{song.track.name}</h6>
+          <h6 style = {{color : "white"}}key={song.track.id}>{song.track.name}</h6>
         ))}
       </>)
   }
@@ -217,12 +208,12 @@ function Recommend(props) {
 
 
         return (
-          <Container>
-            <div style={{ margin: "100px" }}>
-              <h6 style={{ marginTop: "0px" }}>Valence:{props.valence}</h6>
-              <h6>Energy:{props.energy}</h6>
-              <h6>Color:{props.color}</h6>
-              <h6>BGColor:{props.bgColor}</h6>
+          <>
+            <div style={{ margin: "100px" , color : "white"}}>
+              <h6 style={{ marginTop: "0px", color : "white" }}>Valence:{props.valence}</h6>
+              <h6 style = {{color : "white"}}>Energy:{props.energy}</h6>
+              <h6 style = {{color : "white"}}>Color:{props.color}</h6>
+              <h6 style = {{color : "white"}}>BGColor:{props.bgColor}</h6>
             </div>
 
             <div>
@@ -230,18 +221,24 @@ function Recommend(props) {
             </div>
 
               <div style={{ margin: "100px" }}>
-                <label htmlFor="playInput">Enter playlist name: </label>
-                <input id="playInput" type="text" ref={refInput} />
-                <Button variant="outline-light" style = {{margin : "5px"}}onClick={() => { setPlayName(refInput.current.value);setStaged(true)}}>Stage Playlist</Button>{' '}
+                <input id="playInput" type="text" placeholder = "Enter playlist name" ref={refInput} />
+                <Button variant="outline-light" style = {{margin : "5px"}}onClick={() => { setPlayName(refInput.current.value);setStaged(true);reRender?setReRender(false):setReRender(true)}}>Stage Playlist</Button>{' '}
                 {/*<button onClick={() => { setPlayName(refInput.current.value);setStaged(true)}}>Stage Playlist</button>*/}
-                <h3>{playName}</h3>
-                {staged?dispPlay():<></>}
+                
+                {staged?<div>
+
+                <h3 style = {{color : "white"}}>{playName}</h3>
+                <hr style = {{color : "white"}}/>
+                   {dispPlay()}
+                   <hr style = {{color : "white"}}/>
+                   </div>:<></>
+                   }
                 
                 {staged?<Button variant="outline-secondary" onClick={() => {playArr.length&&refInput.current.value.length ? uploadPlay() : window.alert("Select some songs or enter playlist name!");}}>Upload Playlist</Button>:<></>}
                 
               </div>
 
-          </Container>
+          </>
 
         );
       }
