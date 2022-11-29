@@ -7,7 +7,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 const Navigate = (props) => {
   let navigate = useNavigate();
     return(
-<Navbar collapseOnSelect expand="lg" bg="black" variant="dark" sticky = "top" style={{backgroundColor:'#202020'}} shadow={true}>
+<Navbar collapseOnSelect expand="lg" bg="black" variant="dark" sticky = "top" style={{backgroundColor:'#202020'}}>
 <Navbar.Brand href="#home">
 <img src={logo} alt = "error" style = {{height : "1em", width : "1em", marginRight : "1em", marginLeft : "1em"}}/>
   Modia
@@ -15,7 +15,7 @@ const Navigate = (props) => {
 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 <Navbar.Collapse id="responsive-navbar-nav">
   <Nav className="mr-auto">
-    <Nav.Link href="/">Select Mood </Nav.Link>
+    <Nav.Link onClick={()=>navigate("/")}>Select Mood </Nav.Link>
     <Nav.Link onClick={()=>navigate("/playlist")}>Playlist</Nav.Link>
   </Nav>
   <Nav>
